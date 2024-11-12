@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 public class Loadout {
+    String username;
     int loadoutId;
     String loadoutName;
     int primary;
@@ -10,13 +11,13 @@ public class Loadout {
     int perks;
     String melee;
     String fieldUpgrade;
-    int ratingId;
 
     public Loadout(){
 
     }
 
-    public  Loadout(int lI, String lN, int p, int s, int t, int leth, int pk, String m, String fU, int rI){
+    public  Loadout(String u, int lI, String lN, int p, int s, int t, int leth, int pk, String m, String fU, int rI){
+        username = u;
         loadoutId = lI;
         loadoutName = lN;
         primary = p;
@@ -26,7 +27,14 @@ public class Loadout {
         perks = pk;
         melee = m;
         fieldUpgrade = fU;
-        ratingId = rI;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getLoadoutId() {
@@ -101,11 +109,4 @@ public class Loadout {
         this.fieldUpgrade = fieldUpgrade;
     }
 
-    public int getRatingId() {
-        return ratingId;
-    }
-
-    public void setRatingId(int ratingId) {
-        this.ratingId = ratingId;
-    }
 }

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String database_name = "Loadout.db";
+    private static final String database_name = "UserLoadout.db";
     private static final String user_table_name = "User";
     private static final String loadout_table_name = "Loadout";
     private static final String primary_table_name = "Primary";
@@ -21,10 +21,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //users table
-
+        db.execSQL("CREATE TABLE " + user_table_name + " (username String primary key not null, fname String, lname String, email String, age integer, loadout int);");
 
         //loadout table
-        //db.execSQL("CREATE TABLE " + loadout_table_name + "");
+        //db.execSQL("CREATE TABLE " + loadout_table_name + " ()");
 
         //primary's table
         //db.execSQL("CREATE TABLE " + primary_table_name + " (pname String, )");
