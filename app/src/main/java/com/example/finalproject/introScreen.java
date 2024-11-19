@@ -23,7 +23,7 @@ public class introScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.intro_screen_main);
 
         btn_j_login     = findViewById(R.id.btn_v_main_login);
         btn_j_register  = findViewById(R.id.btn_v_main_register);

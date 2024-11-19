@@ -9,8 +9,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String database_name = "UserLoadout.db";
     private static final String user_table_name = "User";
     private static final String loadout_table_name = "Loadout";
+    private static final String loadoutRating_table_name = "LoadoutRating";
     private static final String primary_table_name = "'Primary'";
+    private static final String primaryRating_table_name = "PrimaryRating";
     private static final String secondary_table_name = "Secondary";
+    private static final String secondaryRating_table_name = "SecondaryRating";
     private static final String tactical_table_name = "Tactical";
     private static final String lethal_table_name = "Lethal";
     private static final String perks_table_name = "Perks";
@@ -25,22 +28,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + user_table_name + " (username String primary key not null, fname String, lname String, email String, age integer);");
 
         //loadout table
-        db.execSQL("CREATE TABLE " + loadout_table_name + " (creator String, loadoutName String, loadoutId integer primary key autoincrement not null, primaryGun integer, secondaryGun integer, tactical integer, lethal integer, perks integer, melee String, fieldUpgrade String, foreign key (username) references " + user_table_name + " (username), foreign key (primaryGun) references " + primary_table_name + " (primaryId), foreign key (secondaryGun) references " + secondary_table_name + " (secondaryId), foreign key (tactical) references " + tactical_table_name + " (tacticalId), foreign key (lethal) references " + lethal_table_name + " (lethalId), foreign key (perks) references " + perks_table_name + " (perksId));");
+        db.execSQL("CREATE TABLE " + loadout_table_name + " (creator String, loadoutName String, loadoutId integer primary key autoincrement not null, primaryGun integer, secondaryGun integer, tactical integer, lethal integer, perks integer, melee String, fieldUpgrade String, foreign key (creator) references " + user_table_name + " (username), foreign key (primaryGun) references " + primary_table_name + " (primaryId), foreign key (secondaryGun) references " + secondary_table_name + " (secondaryId), foreign key (tactical) references " + tactical_table_name + " (tacticalId), foreign key (lethal) references " + lethal_table_name + " (lethalId), foreign key (perks) references " + perks_table_name + " (perksId));");
 
         //loadout rating table
-
+        db.execSQL("CREATE TABLE " + loadoutRating_table_name + " (ratingId integer primary key not null, loadoutRating integer, loadoutId integer, foreign key (loadoutId) references " + loadout_table_name + "(loadoutId));");
 
         //primary's table
         db.execSQL("CREATE TABLE " + primary_table_name + " (primaryName String, primaryId integer primary key autoincrement not null, primaryOptic String, primaryMuzzle String, primaryBarrel String, primaryUnderbarrel String, primaryStock String)");
 
         //primary rating table
-
+        db.execSQL("CREATE TABLE " + primaryRating_table_name + " (ratingId integer primary key not null, primaryRating integer, loadoutId integer, foreign key (loadoutId) references " + loadout_table_name + "(loadoutId));");
 
         //secondary table
         db.execSQL("CREATE TABLE " + secondary_table_name + " (secondaryName String, secondaryId integer primary key autoincrement not null, secondaryOptic String, secondaryMuzzle String, secondaryBarrel String, secondaryMagazine String, secondaryGrip String)");
 
         //secondary rating table
-
+        db.execSQL("CREATE TABLE " + secondaryRating_table_name + " (ratingId integer primary key not null, secondaryRating integer, loadoutId integer, foreign key (loadoutId) references " + loadout_table_name + "(loadoutId));");
 
         //tactical table
         db.execSQL("CREATE TABLE " + tactical_table_name + " (tacticalName String, tacticalId integer primary key autoincrement not null)");
@@ -56,11 +59,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + user_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + loadout_table_name + ";");
-        //loadout rating table
+        db.execSQL("DROP TABLE IF EXISTS " + loadoutRating_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + primary_table_name + ";");
-        //primary rating table
+        db.execSQL("DROP TABLE IF EXISTS " + primaryRating_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + secondary_table_name + ";");
-        //secondary rating table
+        db.execSQL("DROP TABLE IF EXISTS " + secondaryRating_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + tactical_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + lethal_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + perks_table_name + ";");
@@ -98,10 +101,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
     private void initLoadouts(){
+        if (countRecordsFromTables(loadoutRating_table_name) == 0){
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Zmoore', 'DeZtroyer Build', 1, 1, 1, 1, 1, 'Baseball Bat', 'Trophy System');");
+
+            db.close();
+        }
+    }
+    private void initLoadoutRating(){
         if (countRecordsFromTables(loadout_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Zmoore', 'Meh', 1, 1, 1, 1, 1, 'Baseball Bat', 'Trophy System');");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES ('1', '5', 1);");
 
             db.close();
         }
@@ -110,7 +122,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(primary_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            //db.execSQL();
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('C9', 1, 'K&S Thermal Holo', 'Compensator', 'Long Barrel', 'Vertical Grip', 'No Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('XM4', 2, 'PrismaTech 4', 'Muzzle Brake', 'Gain-Twist Barrel', 'Marksman Foregrip', 'Buffer Weight Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('Model L', 3, 'Merlin Reflex', 'Suppressor', 'Short Barrel', 'Launcher - High Explosive', 'Light Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('PU-21', 4, 'Volzhskiy Reflex', 'Compensator', 'CHF Barrel', 'Precision Foregrip', 'Combat Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('SWAT 5.56', 5, 'Hawker Hybrid', 'Muzzle Brake', 'Long Barrel', 'Precision Barrel', 'Heavy Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('TANTO .22', 6, 'PrismaTech Reflex', 'Compensator', 'Short Barrel', 'Vertical Foregrip', 'Balanced Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('LR 7.62', 7, 'Iron Sights', 'Muzzle Brake', 'Reinforced Barrel', 'Precision Foregrip', 'Buffer Weight Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('AK-74', 8, 'Merlin Reflex', 'Compensator', 'Long Barrel', 'Launcher - Standard', 'Combat Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('KOMPAKT 92', 9, 'Iron Sights', 'Ported Compensator', 'Gain-Twist Barrel', 'Vertical Foregrip', 'Infiltrator Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('GOBLIN MK2', 10, 'R&K Multizoom', 'Suppressor', 'Short Barrel', 'Precision Foregrip', 'Heavy Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('AEK-973', 11, 'PrismaPoint Hybrid', 'Compensator', 'CHF Barrel', 'Launcher - High Explosive', 'No Stock')");
+            db.execSQL("INSERT INTO " + primary_table_name + " (primaryName, primaryId, primaryOptic, primaryMuzzle, primaryBarrel, primaryUnderbarrel, primaryStock) VALUES ('XM4', 12, 'Kepler Microflex', 'Suppressor', 'Short Barrel', 'Lightweight Foregrip', 'Infiltrator Stock')");
+
+            db.close();
+        }
+    }
+    private void initPrimaryRatings(){
+        if (countRecordsFromTables(primaryRating_table_name) == 0){
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (1, '5', 1);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (2, '5', 2);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (3, '3', 3);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (4, '2', 4);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (5, '1', 5);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (6, '5', 6);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (7, '4', 7);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (8, '5', 8);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (9, '4', 9);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (10, '3', 10);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (11, '3', 11);");
+            db.execSQL("INSERT INTO " + primaryRating_table_name + " (ratingId, primaryRating, primaryId) VALUES (12, '4', 12);");
 
             db.close();
         }
@@ -119,7 +162,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(secondary_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            //db.execSQL();
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 1, 'Iron Sight', 'Suppresor', 'Long Barrel', 'Extended Magazine', 'Quickdraw Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 2, 'Kepler Microflex', 'Compensator', 'CHF Barrel', 'Fast Mag I', 'Assault Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 3, 'Merlin Mini', 'Suppressor', 'Short Barrel', 'Extended Mag II', 'CQB Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 4, 'Accu-Spot Reflex', 'Ported Compensator', 'Reinforced Barrel', 'Fast Mag II')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 5, 'Iron Sights', 'Long Barrel', 'Extended Mag I', 'Commando Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 6, 'Otero Micro Dot', 'Gain-Twist Barrel', 'Fast Magg II', 'Ergonomic Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 7, 'Kepler Pistol Scope', 'Muzzle Brake', 'Long Barrel', 'Extended Mag II', 'Ergonomic Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 8, 'Iron Sights', 'Ported Compensator', 'CHF Barrel', 'Stock Mag', 'CQB Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 9, 'Iron Sights', 'Suppressor', 'Gain-Twisted Barrel', 'Fast Mag II', 'Commando Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 10, 'Kepler Microflex', 'Muzzle Brake', 'Reinforced Barrel', 'Stock Mag', 'Assault Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('Stryder .22', 11, 'Accu-Spot Reflex', 'Compensator', 'Short Barrel', 'Extended Mag I', 'Quickdraw Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 12, 'Otero Micro Dot', 'Suppressor', 'Long Barrel', 'Fast Mag I', 'Assault Grip')");
+
+            db.close();
+        }
+    }
+    private void initSecondaryRatings(){
+        if (countRecordsFromTables(secondaryRating_table_name) == 0){
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (1, '3', 1);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (2, '2', 2);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (3, '5', 3);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (4, '4', 4);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (5, '1', 5);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (6, '2', 6);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (7, '5', 7);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (8, '4', 8);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (9, '4', 9);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (10, '5', 10);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (11, '3', 11);");
+            db.execSQL("INSERT INTO " + secondaryRating_table_name + " (ratingId, secondaryRating, secondaryId) VALUES (12, '3', 12);");
 
             db.close();
         }
@@ -128,7 +202,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(tactical_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            //db.execSQL();
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Shock Charge', 1);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Smoke', 2);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Concussion', 3);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Spy Cam', 4);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Decoy', 5);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Flashbang', 6);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Shock Charge', 7);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Stim Shot', 8);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Prox Alarm', 9);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Flashbang', 10);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Consussion', 11);");
+            db.execSQL("INSERT INTO " + tactical_table_name + " (tacticalName, tacticalId) VALUES ('Stim Shot', 12);");
 
             db.close();
         }
@@ -137,7 +222,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(lethal_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            //db.execSQL();
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Thermo Grenade', 1);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Frag', 2);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Blast Charge', 3);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Combat Axe', 4);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('C4', 5);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Impact Grenade', 6);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Molotov', 7);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Semtex', 8);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Frag', 9);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Semtex', 10);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Combat Axe', 11);");
+            db.execSQL("INSERT INTO " + lethal_table_name + " (lethalName, lethalId) VALUES ('Drill Charge', 12);");
 
             db.close();
         }
@@ -146,7 +242,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(perks_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            //db.execSQL();
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (1, 'Gung-Ho', 'Shadow', 'Quartermaster');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (2, 'Dexterity', 'Assassin', 'Double Time');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (3, 'Ninja', 'Tracker', 'Cold-Blooded');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (4, 'Flak Jacket', 'Forward Intel', 'Guardian');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (5, 'Tac Mask', 'Dispatcher', 'Gearhead');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (6, 'Ghost', 'Fast Hands', 'Bankroll');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (7, 'Gung-Ho', 'Engineer', 'Vigilance');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (8, 'Scavenger', 'Bruiser', 'Bankroll');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (9, 'Ghost', 'Shadow', 'Double Time');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (10, 'Flak Jacket', 'Assassin', 'Quartermaster');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (11, 'Dexterity', 'Fast Hands', 'Cold-Blooded');");
+            db.execSQL("INSERT INTO " + perks_table_name + " (perksId, perk1, perk2, perk3) VALUES (12, 'Tac Mask', 'Engineer', 'Gearhead');");
 
             db.close();
         }
