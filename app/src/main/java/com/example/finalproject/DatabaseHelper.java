@@ -88,7 +88,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void initAllTables(){
-
+        initUsers();
+        initLoadouts();
+        initLoadoutRating();
+        initPrimaries();
+        initPrimaryRatings();
+        initSecondaries();
+        initSecondaryRatings();
+        initTacticals();
+        initLethals();
+        initPerks();
     }
 
     private void initUsers(){
@@ -96,6 +105,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
 
             db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('ZMoore', 'Zackary', 'Moore', 'zmoore@monroeccc.edu', '32');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('PumpkinEater69', 'Peter', 'Griffin', 'pGriffin31@gmail.com', '41');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('xX_c00lguy_Xx', 'Leroy', 'Jenkins', 'leeerrroooyyy@gmail.com', '26');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('Punisher', 'Frank', 'Castle', 'fcastle1974@gmail.com', '35');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('Ghost', 'Simon', 'Riley', 'ghostsr141@hotmail.com', '33');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('Johnny', 'Jack', 'Torrance', 'jTorrance217@gmail.com', '28');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('ONE', 'Yusuke', 'Murata', 'YusMurata@ShonanJ.com', '46');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('SnrBarricade', 'Andrew', 'Taylor', 'ataylor25980@my.monroeccc.edu', '22');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('HipDogster', 'Snupp', 'Doug', 'snupdog@hotmail.com', '54');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('PettyOfficerHalo', 'John', 'Halo', 'halo3@gmail.com', '44');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('DarkAetherKnight', 'Edward', 'Richtofen', 'bo6@wunderwaffle.com', '64');");
+            db.execSQL("INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('Bag-o-Lays', 'Gerald', 'Rivea', 'lastofUs@gmail.com', '98');");
+
 
             db.close();
         }
@@ -105,6 +126,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = this.getWritableDatabase();
 
             db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Zmoore', 'DeZtroyer Build', 1, 1, 1, 1, 1, 'Baseball Bat', 'Trophy System');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('PumpkinEater69', 'Petah Build', 2, 2, 2, 2, 2, 'Knife', 'Spring Mine');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('xX_c00lguy_Xx', 'WoW', 3, 3, 3, 3, 3, 'Knife', 'Trophy System');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Punisher', 'BackinNam', 4, 4, 4, 4, 4, 'Baseball Bat', 'Sleeper Agent');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Ghost', 'WannaHearAJoke', 5, 5, 5, 5, 5, 'Knife', 'NeuroGas');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Johnny', 'AnotherDrink', 6, 6, 6, 6, 6, 'Baseball Bat', 'Morphine Injector');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('ONE', 'MobPsycho', 7, 7, 7, 7, 7, 'Knife', 'Sleeper Agent');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('SnrBarricade', 'meh', 8, 8, 8, 8, 8, 'Baseball Bat', 'Assault Pack');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('HipDogster', 'M&M', 9, 9, 9, 9, 9, 'Knife', 'Scrambler');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('PettyOfficerHalo', 'Loadout?', 10, 10, 10, 10, 10, 'Knife', 'War Cry');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('DarkAetherKnight', 'DarkAether', 11, 11, 11, 11, 11, 'Baseball Bat', 'Signal Lure');");
+            db.execSQL("INSERT INTO " + loadoutRating_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Bag-o-Lays', 'bag', 12, 12, 12, 12, 12, 'Knife', 'Tactical Insertion');");
+
 
             db.close();
         }
@@ -113,7 +146,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(loadout_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES ('1', '5', 1);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (1, '5', 1);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (2, '4', 2);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (3, '5', 3);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (4, '2', 4);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (5, '3', 5);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (6, '2', 6);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (7, '3', 7);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (8, '5', 8);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (9, '4', 9);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (10, '3', 10);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (11, '1', 11);");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(ratingId, loadoutRating, loadoutId) VALUES (12, '3', 12);");
 
             db.close();
         }
