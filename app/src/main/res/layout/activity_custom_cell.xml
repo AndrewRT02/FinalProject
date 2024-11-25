@@ -5,45 +5,150 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/customcellbg"
     tools:context=".customCell">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_v_cc_fieldUpgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_marginStart="368dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_v_cc_melee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="63dp" />
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="84dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tv_v_cc_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_v_cc_loadoutName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tv_v_cc_secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="63dp" />
+        android:layout_marginStart="368dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_cc_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadouts"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Creator"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadout Name"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="69dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Primary"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="9dp" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Secondary"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="368dp"
+        tools:layout_editor_absoluteY="9dp" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Melee"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="212dp"
+        tools:layout_editor_absoluteY="65dp" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field Upgrade"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="368dp"
+        tools:layout_editor_absoluteY="65dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

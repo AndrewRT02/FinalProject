@@ -1,6 +1,14 @@
 package com.example.finalproject;
 
+import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 public class registerUser extends AppCompatActivity {
     EditText et_j_username;
@@ -28,6 +38,8 @@ public class registerUser extends AppCompatActivity {
     Button btn_j_register;
 
     Intent intent_j_backToIntro;
+
+    MediaPlayer registerBtnSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +64,7 @@ public class registerUser extends AppCompatActivity {
 
         intent_j_backToIntro   = new Intent(registerUser.this, introScreen.class);
 
+        registerBtnSound = MediaPlayer.create(registerUser.this, R.raw.letsdothis);
 
         backBtnListener();
         registerNewUserBtnListener();
@@ -73,6 +86,8 @@ public class registerUser extends AppCompatActivity {
                 //Will need to add error checking to this
                 //If username or email is already in use the user can't register with that username/email
                 Log.d("Error Checking", "needs to be added before this can work");
+                //make a push notification
+                registerBtnSound.start();
                 //startActivity(intent_j_backToIntro);
             }
         });
@@ -124,4 +139,5 @@ public class registerUser extends AppCompatActivity {
 
         return bool;
     }
+
 }

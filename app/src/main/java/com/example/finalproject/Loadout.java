@@ -2,8 +2,8 @@ package com.example.finalproject;
 
 public class Loadout {
     String username;
-    int loadoutId;
     String loadoutName;
+    int loadoutId;
     int primary;
     int secondary;
     int tactical;
@@ -16,7 +16,7 @@ public class Loadout {
 
     }
 
-    public  Loadout(String u, int lI, String lN, int p, int s, int t, int leth, int pk, String m, String fU, int rI){
+    public  Loadout(String u, String lN, int lI, int p, int s, int t, int leth, int pk, String m, String fU){
         username = u;
         loadoutId = lI;
         loadoutName = lN;

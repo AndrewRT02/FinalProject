@@ -1,13 +1,21 @@
 package com.example.finalproject;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 public class introScreen extends AppCompatActivity {
 
@@ -18,6 +26,8 @@ public class introScreen extends AppCompatActivity {
     Intent intent_j_login;
 
     DatabaseHelper dbHelper;
+
+    private String CHANNEL_ID = "User Registered!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,9 @@ public class introScreen extends AppCompatActivity {
 
         intent_j_register = new Intent(introScreen.this, registerUser.class);
         intent_j_login    = new Intent(introScreen.this, loginScreen.class);
+
+        notificationPermission();
+        makeNotification();
 
         registerBtnListener();
         loginBtnListener();
@@ -54,5 +67,31 @@ public class introScreen extends AppCompatActivity {
                 startActivity(intent_j_login);
             }
         });
+    }
+
+    private void makeNotification(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(introScreen.this, CHANNEL_ID);
+        builder.setContentTitle("Hello and");
+        builder.setContentText("Welcome to Black Ops 6 Loadout Maker!");
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
+        //makes the notification automatically dismiss when touched
+        builder.setAutoCancel(true);
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "myNotification", NotificationManager.IMPORTANCE_DEFAULT);
+            manager.createNotificationChannel(channel);
+        }
+
+        manager.notify(0, builder.build());
+    }
+
+    private void notificationPermission(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(introScreen.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 0);
+            }
+        }
     }
 }
