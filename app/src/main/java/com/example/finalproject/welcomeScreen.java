@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,6 +43,10 @@ public class welcomeScreen extends AppCompatActivity {
         intent_j_allLoadouts    = new Intent(welcomeScreen.this, viewLoadouts.class);
 
         dbHelper.initAllTables();
+
+        Log.d("AppleJack", dbHelper.getPrimaryNameFromId(1));
+
+        allLoadoutsBtnListener();
     }
 
     private void allLoadoutsBtnListener(){

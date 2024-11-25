@@ -8,13 +8,12 @@ public class Secondary {
     String secondaryBarrel;
     String secondaryMagazine;
     String secondaryGrip;
-    int avgSecondaryRating;
 
     public Secondary(){
 
     }
 
-    public Secondary(String sN, int sI, String sO, String sM, String sB, String sMG, String sG, int avgSR){
+    public Secondary(String sN, int sI, String sO, String sM, String sB, String sMG, String sG){
         secondaryName = sN;
         secondaryId = sI;
         secondaryOptic = sO;
@@ -22,7 +21,6 @@ public class Secondary {
         secondaryBarrel = sB;
         secondaryMagazine = sMG;
         secondaryGrip = sG;
-        avgSecondaryRating = avgSR;
     }
 
     public String getSecondaryName() {
@@ -79,13 +77,5 @@ public class Secondary {
 
     public void setSecondaryGrip(String secondaryGrip) {
         this.secondaryGrip = secondaryGrip;
-    }
-
-    public int getAvgSecondaryRating() {
-        return avgSecondaryRating;
-    }
-
-    public void setAvgSecondaryRating(int avgSecondaryRating) {
-        this.avgSecondaryRating = avgSecondaryRating;
     }
 }

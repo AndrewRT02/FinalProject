@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,16 @@ import java.util.ArrayList;
 public class LoadoutListAdapter extends BaseAdapter {
     Context context;
     ArrayList<Loadout> listOfLoadouts;
+    ArrayList<Primary> listOfPrimaries;
+    ArrayList<Secondary> listOfSecondaries;
+    DatabaseHelper dbHelper;
 
-
-    public LoadoutListAdapter(Context c, ArrayList<Loadout> ls){
+    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls, DatabaseHelper db){
         context = c;
-        listOfLoadouts = ls;
+        listOfLoadouts = ll;
+        listOfPrimaries = lp;
+        listOfSecondaries = ls;
+        dbHelper = db;
     }
 
     @Override
@@ -49,8 +55,18 @@ public class LoadoutListAdapter extends BaseAdapter {
         TextView fUpgrade = view.findViewById(R.id.tv_v_cc_fieldUpgrade);
 
         Loadout loadout = listOfLoadouts.get(i);
+        Primary primaries = listOfPrimaries.get(i);
+        Secondary secondaries = listOfSecondaries.get(i);
+
+        //Log.d("Blueberry", listOfLoadouts.get(i).loadoutName);
+
 
         creator.setText(loadout.getUsername());
+        lName.setText(loadout.getLoadoutName());
+        //primary.setText(dbHelper.getPrimaryNameFromId(i));
+        //secondary.setText(secondaries.getSecondaryName());
+        melee.setText(loadout.getMelee());
+        fUpgrade.setText(loadout.getFieldUpgrade());
 
         return view;
     }

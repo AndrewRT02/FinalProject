@@ -8,13 +8,12 @@ public class Primary {
     String primaryBarrel;
     String primaryUnderbarrel;
     String primaryStock;
-    int avgPrimaryRating;
 
     public Primary(){
 
     }
 
-    public Primary(String pN, int pI, String pO, String pM, String pB, String  pUB, String pS, int avgPR){
+    public Primary(String pN, int pI, String pO, String pM, String pB, String  pUB, String pS){
         primaryName = pN;
         primaryId = pI;
         primaryOptic = pO;
@@ -22,7 +21,6 @@ public class Primary {
         primaryBarrel = pB;
         primaryUnderbarrel = pUB;
         primaryStock = pS;
-        avgPrimaryRating = avgPR;
     }
 
     public String getPrimaryName() {
@@ -79,13 +77,5 @@ public class Primary {
 
     public void setPrimaryStock(String primaryStock) {
         this.primaryStock = primaryStock;
-    }
-
-    public int getAvgRating() {
-        return avgPrimaryRating;
-    }
-
-    public void setAvgRating(int avgRating) {
-        this.avgPrimaryRating = avgRating;
     }
 }

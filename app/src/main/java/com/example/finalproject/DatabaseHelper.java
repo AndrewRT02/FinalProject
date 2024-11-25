@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -213,8 +214,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 2, 'Kepler Microflex', 'Compensator', 'CHF Barrel', 'Fast Mag I', 'Assault Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 3, 'Merlin Mini', 'Suppressor', 'Short Barrel', 'Extended Mag II', 'CQB Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 4, 'Accu-Spot Reflex', 'Ported Compensator', 'Reinforced Barrel', 'Fast Mag II', 'CQB Grip')");
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 5, 'Iron Sights', 'Long Barrel', 'Extended Mag I', 'Commando Grip')");
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 6, 'Otero Micro Dot', 'Gain-Twist Barrel', 'Fast Magg II', 'Ergonomic Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 5, 'Iron Sights', 'Ported Compensator', 'Long Barrel', 'Extended Mag I', 'Commando Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 6, 'Otero Micro Dot', 'Compensator', 'Gain-Twist Barrel', 'Fast Magg II', 'Ergonomic Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 7, 'Kepler Pistol Scope', 'Muzzle Brake', 'Long Barrel', 'Extended Mag II', 'Ergonomic Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 8, 'Iron Sights', 'Ported Compensator', 'CHF Barrel', 'Stock Mag', 'CQB Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 9, 'Iron Sights', 'Suppressor', 'Gain-Twisted Barrel', 'Fast Mag II', 'Commando Grip')");
@@ -316,7 +317,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public ArrayList<Loadout> allLoadoutsLiist(){
+    public ArrayList<Loadout> allLoadoutsList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + loadout_table_name, null);
@@ -343,5 +344,89 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return loadoutArrayList;
+    }
+
+    public ArrayList<Primary> allPrimariesList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + primary_table_name, null);
+
+        ArrayList<Primary> primaryArrayList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                primaryArrayList.add(new Primary(
+                        cursor.getString(0),
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6))
+                );
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        return primaryArrayList;
+    }
+
+    public ArrayList<Secondary> allSecondariesList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + secondary_table_name, null);
+
+        ArrayList<Secondary> secondaryArrayList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                secondaryArrayList.add(new Secondary(
+                        cursor.getString(0),
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6))
+                );
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        return secondaryArrayList;
+    }
+
+    public String getPrimaryNameFromId(int Id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT primaryName FROM " + primary_table_name + " WHERE primaryId= '" + Id + "';";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+
+        //Log.d("Blueberry", cursor.getString(0));
+
+        db.close();
+
+        return cursor.getString(0);
+    }
+
+    public String getSecondaryNameFromId(int Id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT secondaryName FROM " + secondary_table_name + " WHERE secondaryId= '" + Id + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        //Log.d("Blueberry", cursor.getString(0));
+
+        db.close();
+
+        return cursor.getString(0);
     }
 }

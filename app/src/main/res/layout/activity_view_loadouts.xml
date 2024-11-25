@@ -14,18 +14,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
         android:layout_marginTop="112dp"
+        android:layout_marginBottom="63dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Loadouts"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_v_view_listOfLoadouts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv_v_view_listOfLoadouts"
-        android:layout_width="409dp"
-        android:layout_height="516dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="214dp" />
+        android:layout_width="415dp"
+        android:layout_height="408dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 </androidx.constraintlayout.widget.ConstraintLayout>
