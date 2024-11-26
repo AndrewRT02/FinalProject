@@ -71,6 +71,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + tactical_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + lethal_table_name + ";");
         db.execSQL("DROP TABLE IF EXISTS " + perks_table_name + ";");
+
+        onCreate(db);
     }
 
     public String getUserDbName(){return user_table_name;}
@@ -102,6 +104,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         initTacticals();
         initLethals();
         initPerks();
+
+
     }
 
     private void initUsers(){
@@ -222,6 +226,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 10, 'Kepler Microflex', 'Muzzle Brake', 'Reinforced Barrel', 'Stock Mag', 'Assault Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('Stryder .22', 11, 'Accu-Spot Reflex', 'Compensator', 'Short Barrel', 'Extended Mag I', 'Quickdraw Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 12, 'Otero Micro Dot', 'Suppressor', 'Long Barrel', 'Fast Mag I', 'Assault Grip')");
+
+
 
             db.close();
         }
@@ -429,4 +435,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return cursor.getString(0);
     }
+
 }

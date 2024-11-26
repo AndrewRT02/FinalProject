@@ -15,14 +15,12 @@ public class LoadoutListAdapter extends BaseAdapter {
     ArrayList<Loadout> listOfLoadouts;
     ArrayList<Primary> listOfPrimaries;
     ArrayList<Secondary> listOfSecondaries;
-    DatabaseHelper dbHelper;
 
-    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls, DatabaseHelper db){
+    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls){
         context = c;
         listOfLoadouts = ll;
         listOfPrimaries = lp;
         listOfSecondaries = ls;
-        dbHelper = db;
     }
 
     @Override
@@ -63,8 +61,8 @@ public class LoadoutListAdapter extends BaseAdapter {
 
         creator.setText(loadout.getUsername());
         lName.setText(loadout.getLoadoutName());
-        //primary.setText(dbHelper.getPrimaryNameFromId(i));
-        //secondary.setText(secondaries.getSecondaryName());
+        primary.setText(primaries.getPrimaryName());
+        secondary.setText(secondaries.getSecondaryName());
         melee.setText(loadout.getMelee());
         fUpgrade.setText(loadout.getFieldUpgrade());
 

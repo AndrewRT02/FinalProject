@@ -35,14 +35,14 @@ public class viewLoadouts extends AppCompatActivity {
         listOfSecondaries = dbHelper.allSecondariesList();
 
 
-        //Log.d("Appricot", listOfLoadouts.get(0).getLoadoutName() + " ");
+        Log.d("Appricot", listOfPrimaries.get(5).getPrimaryName());
 
         fillListView();
 
     }
 
    private void fillListView(){
-       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries, dbHelper);
+       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries);
        lv_j_listOfLoadouts.setAdapter(adapter);
    }
 }

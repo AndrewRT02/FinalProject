@@ -22,19 +22,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/allerta_stencil"
-        android:text="Field Upgrade"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_v_cc_secondary"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_cc_secondary" />
-
-    <TextView
         android:id="@+id/tv_v_cc_fieldUpgrade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +32,19 @@
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field Upgrade"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_v_cc_secondary"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_cc_secondary" />
 
     <TextView
         android:id="@+id/tv_v_cc_secondary"
@@ -102,7 +102,7 @@
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Melee"
         android:textColor="@color/white"
@@ -154,14 +154,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Loadout Name"
         android:textColor="@color/white"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_v_cc_melee"
+        app:layout_constraintBottom_toBottomOf="@+id/textView23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_cc_creator" />
+        app:layout_constraintTop_toTopOf="@+id/textView23" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
