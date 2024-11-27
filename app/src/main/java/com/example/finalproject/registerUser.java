@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,7 +61,9 @@ public class registerUser extends AppCompatActivity {
         tv_j_ageError   = findViewById(R.id.tv_v_regUser_ageError);
 
         btn_j_back      = findViewById(R.id.btn_v_reg_back);
+        btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_register  = findViewById(R.id.btn_v_reg_register);
+        btn_j_register.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_backToIntro   = new Intent(registerUser.this, introScreen.class);
 
@@ -88,7 +91,11 @@ public class registerUser extends AppCompatActivity {
                 Log.d("Error Checking", "needs to be added before this can work");
                 //make a push notification
                 registerBtnSound.start();
-                //startActivity(intent_j_backToIntro);
+                Boolean bool = userErrorField();
+
+                if (bool){
+                    //startActivity(intent_j_backToIntro);
+                }
             }
         });
     }

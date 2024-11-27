@@ -36,9 +36,8 @@ public class introScreen extends AppCompatActivity {
         setContentView(R.layout.intro_screen_main);
 
         btn_j_login     = findViewById(R.id.btn_v_main_login);
-        btn_j_register  = findViewById(R.id.btn_v_main_register);
-
         btn_j_login.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_j_register  = findViewById(R.id.btn_v_main_register);
         btn_j_register.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_register = new Intent(introScreen.this, registerUser.class);

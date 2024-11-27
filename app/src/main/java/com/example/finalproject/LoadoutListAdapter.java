@@ -49,7 +49,6 @@ public class LoadoutListAdapter extends BaseAdapter {
         TextView lName = view.findViewById(R.id.tv_v_cc_loadoutName);
         TextView primary = view.findViewById(R.id.tv_v_cc_primary);
         TextView secondary = view.findViewById(R.id.tv_v_cc_secondary);
-        TextView melee = view.findViewById(R.id.tv_v_cc_melee);
         TextView fUpgrade = view.findViewById(R.id.tv_v_cc_fieldUpgrade);
 
         Loadout loadout = listOfLoadouts.get(i);
@@ -63,7 +62,6 @@ public class LoadoutListAdapter extends BaseAdapter {
         lName.setText(loadout.getLoadoutName());
         primary.setText(primaries.getPrimaryName());
         secondary.setText(secondaries.getSecondaryName());
-        melee.setText(loadout.getMelee());
         fUpgrade.setText(loadout.getFieldUpgrade());
 
         return view;

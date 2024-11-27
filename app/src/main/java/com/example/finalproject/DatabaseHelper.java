@@ -41,13 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + primary_table_name + " (primaryName String, primaryId integer primary key autoincrement not null, primaryOptic String, primaryMuzzle String, primaryBarrel String, primaryUnderbarrel String, primaryStock String)");
 
         //primary rating table
-        db.execSQL("CREATE TABLE " + primaryRating_table_name + " (ratingId integer primary key not null, primaryRating integer, loadoutId integer, foreign key (loadoutId) references " + loadout_table_name + "(loadoutId));");
+        db.execSQL("CREATE TABLE " + primaryRating_table_name + " (ratingId integer primary key not null, primaryRating integer, loadoutId integer, foreign key (loadoutId) references " + primary_table_name + "(primaryId));");
 
         //secondary table
         db.execSQL("CREATE TABLE " + secondary_table_name + " (secondaryName String, secondaryId integer primary key autoincrement not null, secondaryOptic String, secondaryMuzzle String, secondaryBarrel String, secondaryMagazine String, secondaryGrip String)");
 
         //secondary rating table
-        db.execSQL("CREATE TABLE " + secondaryRating_table_name + " (ratingId integer primary key not null, secondaryRating integer, loadoutId integer, foreign key (loadoutId) references " + loadout_table_name + "(loadoutId));");
+        db.execSQL("CREATE TABLE " + secondaryRating_table_name + " (ratingId integer primary key not null, secondaryRating integer, loadoutId integer, foreign key (loadoutId) references " + secondary_table_name + "(secondaryId));");
 
         //tactical table
         db.execSQL("CREATE TABLE " + tactical_table_name + " (tacticalName String, tacticalId integer primary key autoincrement not null)");
