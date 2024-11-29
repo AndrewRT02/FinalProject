@@ -7,4 +7,130 @@
     android:layout_height="match_parent"
     tools:context=".searchLoadouts">
 
+    <TextView
+        android:id="@+id/tv_creator_selection3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="302dp"
+        android:layout_marginBottom="36dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="302dp"
+        android:layout_marginBottom="51dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Lethal:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="286dp"
+        android:layout_marginBottom="46dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Tactical:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="303dp"
+        android:layout_marginBottom="68dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Melee:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="259dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Secondary:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_creator_selection3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="223dp"
+        android:layout_marginBottom="192dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field Upgrade:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Primary:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_primary_selection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/tv_primary_selection"
+        android:layout_width="312dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Primary"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="104dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Search Loadouts By:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

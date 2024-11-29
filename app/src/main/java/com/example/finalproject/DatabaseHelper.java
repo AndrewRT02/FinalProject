@@ -323,6 +323,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
+    public ArrayList<User> allUsersList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + user_table_name, null);
+
+        ArrayList<User> userArrayList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                userArrayList.add(new User(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getInt(4))
+                );
+            }
+            while(cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return userArrayList;
+    }
+
     public ArrayList<Loadout> allLoadoutsList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -436,4 +461,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
+    public void createUser(User u){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query = "INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('" + u.getUsername() + "', '" + u.getFname() + "', '" + u.getLname() + "', '" + u.getEmail() + "', '" + u.getEmail() + "', '" + u.getAge() + "');";
+
+        db.execSQL(query);
+
+        db.close();
+    }
+
+    public void getAllUserInfoGivenUsername(String u){
+        User registeredUser = new User();
+
+        String query;
+        query = "SELECT * FROM " + user_table_name + " WHERE username= '" + u + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredUser.setUsername(cursor.getString(0));
+            registeredUser.setFname(cursor.getString(1));
+            registeredUser.setLname(cursor.getString(2));
+            registeredUser.setEmail(cursor.getString(3));
+            registeredUser.setAge(cursor.getInt(4));
+
+            SessionData.setRegisteredUser(registeredUser);
+        }
+        else{
+            SessionData.setRegisteredUser(null);
+        }
+
+        db.close();
+    }
 }

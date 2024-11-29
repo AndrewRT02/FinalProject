@@ -8,6 +8,21 @@
     android:background="@drawable/bo6background2"
     tools:context=".loginScreen">
 
+    <TextView
+        android:id="@+id/tv_v_login_uUsed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="Username doesn't match any current Usernames!"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_login_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/et_v_login_uName"
         android:layout_width="wrap_content"
@@ -49,11 +64,11 @@
         android:id="@+id/btn_v_login_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="291dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Login"
         app:cornerRadius="0sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_login_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,12 +76,12 @@
         android:id="@+id/btn_v_login_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="303dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Back"
         app:cornerRadius="0sp"
-        app:layout_constraintStart_toStartOf="@+id/btn_v_login_login"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_login_login" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_v_login_login" />
 
     <TextView
         android:id="@+id/textView15"

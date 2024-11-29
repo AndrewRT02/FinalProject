@@ -26,6 +26,7 @@ public class welcomeScreen extends AppCompatActivity {
 
     Intent intent_j_allLoadouts;
     Intent intent_j_loginScreen;
+    Intent intent_j_searchLoadout;
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -50,6 +51,9 @@ public class welcomeScreen extends AppCompatActivity {
 
         intent_j_allLoadouts    = new Intent(welcomeScreen.this, viewLoadouts.class);
         intent_j_loginScreen    = new Intent(welcomeScreen.this, loginScreen.class);
+        intent_j_searchLoadout    = new Intent(welcomeScreen.this, searchLoadouts.class);
+
+        tv_j_user.setText(SessionData.getRegisteredUser().getUsername());
 
         dbHelper.initAllTables();
 
@@ -57,6 +61,7 @@ public class welcomeScreen extends AppCompatActivity {
 
         allLoadoutsBtnListener();
         signOutBtnListener();
+        searchLoadoutBtnListener();
     }
 
     private void allLoadoutsBtnListener(){
@@ -73,6 +78,15 @@ public class welcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_loginScreen);
+            }
+        });
+    }
+
+    private void searchLoadoutBtnListener(){
+        btn_j_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_searchLoadout);
             }
         });
     }

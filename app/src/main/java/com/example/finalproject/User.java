@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class User {
     String username;    //Primary Key
-    int loadout;
     String fname;
     String lname;
     String email;
@@ -14,9 +13,8 @@ public class User {
 
     }
 
-    public User(String u, int lo, String f, String l, String e, int a){
+    public User(String u, String f, String l, String e, int a){
         username = u;
-        loadout = lo;
         fname = f;
         lname = l;
         email = e;
@@ -29,14 +27,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public int getLoadout() {
-        return loadout;
-    }
-
-    public void setLoadout(int loadout) {
-        this.loadout = loadout;
     }
 
     public String getFname() {

@@ -34,6 +34,7 @@ public class registerUser extends AppCompatActivity {
     TextView tv_j_lnameError;
     TextView tv_j_emailError;
     TextView tv_j_ageError;
+    TextView tv_j_ueError;
 
     Button btn_j_back;
     Button btn_j_register;
@@ -41,6 +42,8 @@ public class registerUser extends AppCompatActivity {
     Intent intent_j_backToIntro;
 
     MediaPlayer registerBtnSound;
+
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class registerUser extends AppCompatActivity {
         tv_j_lnameError = findViewById(R.id.tv_v_regUser_lnameError);
         tv_j_emailError = findViewById(R.id.tv_v_regUser_emailError);
         tv_j_ageError   = findViewById(R.id.tv_v_regUser_ageError);
+        tv_j_ueError    = findViewById(R.id.tv_v_reg_ueError);
 
         btn_j_back      = findViewById(R.id.btn_v_reg_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
@@ -90,11 +94,31 @@ public class registerUser extends AppCompatActivity {
                 //If username or email is already in use the user can't register with that username/email
                 Log.d("Error Checking", "needs to be added before this can work");
                 //make a push notification
-                registerBtnSound.start();
-                Boolean bool = userErrorField();
+                Boolean bool;
+                bool = userErrorField();
+
+                String uname = et_j_username.getText().toString();
+                String fname = et_j_fname.getText().toString();
+                String lname = et_j_fname.getText().toString();
+                String email = et_j_email.getText().toString();
+                String age   = et_j_age.getText().toString();
 
                 if (bool){
-                    //startActivity(intent_j_backToIntro);
+                    //Log.d("Cranberry", "Got Here");
+                    for (int i = 0; i < dbHelper.allUsersList().size(); i++){
+                        if (uname.equals(dbHelper.allUsersList().get(i).getUsername()) || email.equalsIgnoreCase(dbHelper.allUsersList().get(i).getEmail())){
+                            //Log.d("Cranberry", "Got Here");
+                            tv_j_ueError.setVisibility(View.VISIBLE);
+                            return;
+                        }
+                        else{
+                            //Log.d("Cranberry", "Here I got");
+                            tv_j_ueError.setVisibility(View.INVISIBLE);
+                            registerBtnSound.start();
+                            //startActivity(intent_j_backToIntro);
+                        }
+                    }
+
                 }
             }
         });
@@ -117,7 +141,7 @@ public class registerUser extends AppCompatActivity {
         if (et_j_fname.getText().toString().isEmpty()){
             tv_j_fnameError.setVisibility(View.VISIBLE);
             bool = false;
-        } else if (et_j_fname.getText().toString().isEmpty()) {
+        } else if (et_j_fname != null) {
             tv_j_fnameError.setVisibility(View.INVISIBLE);
         }
 

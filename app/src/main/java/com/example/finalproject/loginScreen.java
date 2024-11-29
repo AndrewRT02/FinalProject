@@ -18,6 +18,7 @@ public class loginScreen extends AppCompatActivity {
     Button btn_j_login;
 
     TextView tv_j_uNameError;
+    TextView tv_j_userNameUsed;
 
     EditText et_j_uName;
 
@@ -25,6 +26,8 @@ public class loginScreen extends AppCompatActivity {
     Intent intent_j_login;
 
     MediaPlayer loginBtnPressSound;
+
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class loginScreen extends AppCompatActivity {
         et_j_uName = findViewById(R.id.et_v_login_uName);
 
         tv_j_uNameError = findViewById(R.id.tv_v_login_uError);
+        tv_j_userNameUsed = findViewById(R.id.tv_v_login_uUsed);
 
         intent_j_back   = new Intent(loginScreen.this, introScreen.class);
         intent_j_login  = new Intent(loginScreen.this, welcomeScreen.class);
@@ -65,9 +69,28 @@ public class loginScreen extends AppCompatActivity {
             public void onClick(View view) {
                 loginBtnPressSound.start();
 
-                //-------------------------Remember to add the error field checking---------------------------------
+                Boolean bool;
+                bool = uNameErrorField();
 
-                startActivity(intent_j_login);
+                String uname = et_j_uName.getText().toString();
+
+                //-------------------------Remember to add the error field checking---------------------------------
+                //Remember to remove the commented out section
+
+                if (bool){
+                    //Log.d("Cranberry", "Got Here");
+                    for (int i = 0; i < dbHelper.allUsersList().size(); i++){
+                        if (uname.equals(dbHelper.allUsersList().get(i).getUsername())){
+                            //Log.d("Cranberry", "Got Here");
+                            tv_j_userNameUsed.setVisibility(View.INVISIBLE);
+                            startActivity(intent_j_login);
+                            dbHelper.getAllUserInfoGivenUsername(uname);
+                            return;
+                        }
+                        tv_j_userNameUsed.setVisibility(View.VISIBLE);
+                    }
+                }
+                //startActivity(intent_j_login);
             }
         });
     }
