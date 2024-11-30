@@ -43,8 +43,8 @@ public class introScreen extends AppCompatActivity {
         intent_j_register = new Intent(introScreen.this, registerUser.class);
         intent_j_login    = new Intent(introScreen.this, loginScreen.class);
 
-        notificationPermission();
-        makeNotification();
+        //notificationPermission();
+        //makeNotification();
 
         registerBtnListener();
         loginBtnListener();

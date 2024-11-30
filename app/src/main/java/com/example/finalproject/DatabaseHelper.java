@@ -465,7 +465,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query;
-        query = "INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('" + u.getUsername() + "', '" + u.getFname() + "', '" + u.getLname() + "', '" + u.getEmail() + "', '" + u.getEmail() + "', '" + u.getAge() + "');";
+        query = "INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('" + u.getUsername() + "', '" + u.getFname() + "', '" + u.getLname() + "', '" + u.getEmail() + "', '" + u.getAge() + "');";
 
         db.execSQL(query);
 
@@ -499,4 +499,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
 }

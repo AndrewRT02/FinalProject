@@ -99,7 +99,7 @@ public class registerUser extends AppCompatActivity {
 
                 String uname = et_j_username.getText().toString();
                 String fname = et_j_fname.getText().toString();
-                String lname = et_j_fname.getText().toString();
+                String lname = et_j_lname.getText().toString();
                 String email = et_j_email.getText().toString();
                 String age   = et_j_age.getText().toString();
 
@@ -115,7 +115,8 @@ public class registerUser extends AppCompatActivity {
                             //Log.d("Cranberry", "Here I got");
                             tv_j_ueError.setVisibility(View.INVISIBLE);
                             registerBtnSound.start();
-                            //startActivity(intent_j_backToIntro);
+                            dbHelper.createUser(new User(uname, fname, lname, email, Integer.parseInt(age)));
+                            startActivity(intent_j_backToIntro);
                         }
                     }
 

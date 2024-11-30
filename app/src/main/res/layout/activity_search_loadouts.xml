@@ -5,17 +5,121 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
     tools:context=".searchLoadouts">
 
     <TextView
-        android:id="@+id/tv_creator_selection3"
+        android:id="@+id/tv_end_rating_selection"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="37dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select End Rating"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_search_search"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_start_rating_selection"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="37dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Start Rating"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_search_back"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="302dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="TextView"
+        android:text="Rating:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_start_rating_selection"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_search_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="62dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Search"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_search_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="62dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_search_search"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_fieldUpgrade_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Field Upgrade"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_melee_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Melee"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_lethal_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Lethal"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_secondary_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Secondary"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -24,42 +128,36 @@
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="302dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Lethal:"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_lethal_selection"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="286dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Tactical:"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tactical_selection"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="303dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Melee:"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_melee_selection"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -67,13 +165,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="259dp"
-        android:layout_marginBottom="1dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Secondary:"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_creator_selection3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_secondary_selection"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -81,56 +177,78 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="223dp"
-        android:layout_marginBottom="192dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Field Upgrade:"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_fieldUpgrade_selection"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Primary:"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_primary_selection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_primary_selection"
-        android:layout_width="312dp"
+        android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Primary"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tactical_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Tactical"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="104dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Search Loadouts By:"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="147dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="to"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_end_rating_selection"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_rating_selection" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
