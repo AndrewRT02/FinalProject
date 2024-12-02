@@ -22,11 +22,13 @@ public class welcomeScreen extends AppCompatActivity {
     Button btn_j_make;
     Button btn_j_userLoadouts;
     Button btn_j_allLoadouts;
+    Button btn_j_profile;
     Button btn_j_signOut;
 
     Intent intent_j_allLoadouts;
     Intent intent_j_loginScreen;
     Intent intent_j_searchLoadout;
+    Intent intent_j_profile;
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -46,12 +48,21 @@ public class welcomeScreen extends AppCompatActivity {
         btn_j_userLoadouts.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_allLoadouts   = findViewById(R.id.btn_v_wel_allLoadouts);
         btn_j_allLoadouts.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_j_profile       = findViewById(R.id.btn_v_wel_profile);
+        btn_j_profile.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_signOut       = findViewById(R.id.btn_v_wel_signout);
         btn_j_signOut.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_allLoadouts    = new Intent(welcomeScreen.this, viewLoadouts.class);
         intent_j_loginScreen    = new Intent(welcomeScreen.this, loginScreen.class);
-        intent_j_searchLoadout    = new Intent(welcomeScreen.this, searchLoadouts.class);
+        intent_j_searchLoadout  = new Intent(welcomeScreen.this, searchLoadouts.class);
+        intent_j_profile        = new Intent(welcomeScreen.this, userProfile.class);
+
+        //Bundle extras = getIntent().getExtras();
+        //String uname = extras.getString("DisplayUName");
+
+
+        //String uname = SessionData.getRegisteredUser().getUsername();
 
         tv_j_user.setText(SessionData.getRegisteredUser().getUsername());
 
@@ -62,6 +73,7 @@ public class welcomeScreen extends AppCompatActivity {
         allLoadoutsBtnListener();
         signOutBtnListener();
         searchLoadoutBtnListener();
+        userProfileBtnListener();
     }
 
     private void allLoadoutsBtnListener(){
@@ -87,6 +99,15 @@ public class welcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_searchLoadout);
+            }
+        });
+    }
+
+    private void userProfileBtnListener(){
+        btn_j_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_profile);
             }
         });
     }

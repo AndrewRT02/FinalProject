@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -27,8 +28,11 @@ public class viewLoadouts extends AppCompatActivity {
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     Intent intent_j_welcomeScreen;
+    Intent intent_j_loadoutInfo;
 
     LoadoutListAdapter adapter;
+
+    Loadout l = new Loadout();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class viewLoadouts extends AppCompatActivity {
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_welcomeScreen = new Intent(viewLoadouts.this, welcomeScreen.class);
+        intent_j_loadoutInfo   = new Intent(viewLoadouts.this, loadoutInfo.class);
 
         listOfLoadouts = dbHelper.allLoadoutsList();
         listOfPrimaries = dbHelper.allPrimariesList();
@@ -51,6 +56,7 @@ public class viewLoadouts extends AppCompatActivity {
 
         fillListView();
         welcomeScreenBackBtnListener();
+        itemClickListener();
     }
 
    private void fillListView(){
@@ -63,6 +69,20 @@ public class viewLoadouts extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_welcomeScreen);
+            }
+        });
+   }
+
+   private void itemClickListener(){
+        lv_j_listOfLoadouts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int lId;
+                lId = listOfLoadouts.get(i).getLoadoutId();
+
+                intent_j_loadoutInfo.putExtra("findThisId", lId);
+                startActivity(intent_j_loadoutInfo);
+
             }
         });
    }

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
+    tools:context=".primaryInfo">
+
+    <Button
+        android:id="@+id/btn_v_pInfo_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        tools:layout_editor_absoluteX="278dp"
+        tools:layout_editor_absoluteY="625dp" />
+
+    <Button
+        android:id="@+id/btn_v_pInfo_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="625dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="420dp" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Stock:"
+        android:textColor="#FA6700"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="401dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_ubarrel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Underbarrel:"
+        android:textColor="#FA6700"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="331dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_barrel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Barrel:"
+        android:textColor="#FA6700"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="257dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_muzzle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Muzzle:"
+        android:textColor="#FA6700"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="185dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_pCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_optic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="139dp" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Optic:"
+        android:textColor="#FA6700"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="120dp" />
+
+    <TextView
+        android:id="@+id/tv_v_pInfo_pName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

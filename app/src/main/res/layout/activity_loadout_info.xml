@@ -5,6 +5,388 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
     tools:context=".loadoutInfo">
+
+    <Button
+        android:id="@+id/btn_v_info_addRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="62dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Rate"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_lName" />
+
+    <Button
+        android:id="@+id/btn_v_info_secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="19dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="See Secondary"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_info_primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="See Primary"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_info_secondary"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_info_perk2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="93dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Perk 2"
+        android:textColor="#FA6700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_fU" />
+
+    <TextView
+        android:id="@+id/tv_v_info_perk1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_v_info_perk2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="59dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Perk 1"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_melee" />
+
+    <Button
+        android:id="@+id/btn_v_info_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="23dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Update"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_info_back"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_info_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_info_tactical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    <TextView
+        android:id="@+id/tv_v_info_primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Secondary"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toEndOf="@+id/textView40"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_info_addRating" />
+
+    <TextView
+        android:id="@+id/tv_v_info_lethal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_info_tactical"
+        app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Primary"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_creator" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field Upgrade"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toEndOf="@+id/textView47"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_lethal" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Lethal"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toEndOf="@+id/textView46"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_secondary" />
+
+    <TextView
+        android:id="@+id/tv_v_info_secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_info_primary"
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+    <TextView
+        android:id="@+id/tv_v_info_fU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="34dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_v_info_melee"
+        app:layout_constraintTop_toBottomOf="@+id/textView49" />
+
+    <TextView
+        android:id="@+id/tv_v_info_perk3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="123dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Perk 3"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_perk2" />
+
+    <TextView
+        android:id="@+id/tv_v_info_melee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Melee"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_tactical" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Tactical"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_primary" />
+
+    <TextView
+        android:id="@+id/tv_v_info_creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_info_lID" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Creator"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <TextView
+        android:id="@+id/tv_v_info_lID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Username"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textView32"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadout:"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadout ID:"
+        android:textColor="#FA6700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <TextView
+        android:id="@+id/tv_v_info_lName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="47dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Register User"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView31"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

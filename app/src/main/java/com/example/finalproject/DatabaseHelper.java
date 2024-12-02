@@ -1,11 +1,11 @@
 package com.example.finalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -496,6 +496,186 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             SessionData.setRegisteredUser(null);
         }
+
+        db.close();
+    }
+
+    public void getAllLoadoutInfoGivenLoadoutId(int i){
+        Loadout registeredLoadout = new Loadout();
+
+        String query;
+        query = "SELECT * FROM " + loadout_table_name + " WHERE loadoutId= '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredLoadout.setUsername(cursor.getString(0));
+            registeredLoadout.setLoadoutName(cursor.getString(1));
+            registeredLoadout.setLoadoutId(cursor.getInt(2));
+            registeredLoadout.setPrimary(cursor.getInt(3));
+            registeredLoadout.setSecondary(cursor.getInt(4));
+            registeredLoadout.setTactical(cursor.getInt(5));
+            registeredLoadout.setLethal(cursor.getInt(6));
+            registeredLoadout.setPerks(cursor.getInt(7));
+            registeredLoadout.setMelee(cursor.getString(8));
+            registeredLoadout.setFieldUpgrade(cursor.getString(9));
+
+            LoadoutSessionData.setRegisteredLoadout(registeredLoadout);
+        }
+        else {
+            LoadoutSessionData.setRegisteredLoadout(null);
+        }
+
+        db.close();
+
+    }
+
+    public void getAllPrimaryInfoGivenId(int i){
+        Primary registeredPrimary = new Primary();
+
+        String query = "SELECT * FROM " + primary_table_name + "WHERE primaryId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredPrimary.setPrimaryName(cursor.getString(0));
+            registeredPrimary.setPrimaryId(cursor.getInt(1));
+            registeredPrimary.setPrimaryOptic(cursor.getString(2));
+            registeredPrimary.setPrimaryMuzzle(cursor.getString(3));
+            registeredPrimary.setPrimaryBarrel(cursor.getString(4));
+            registeredPrimary.setPrimaryUnderbarrel(cursor.getString(5));
+            registeredPrimary.setPrimaryStock(cursor.getString(6));
+
+            PrimarySessionData.setRegisteredPrimary(registeredPrimary);
+        }
+        else {
+            PrimarySessionData.setRegisteredPrimary(null);
+        }
+
+        db.close();
+    }
+
+    public void getAllSecondaryInfoGivenID(int i){
+        Secondary registeredSecondary = new Secondary();
+
+        String query = "SELECT * FROM " + secondary_table_name + " WHERE secondaryId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredSecondary.setSecondaryName(cursor.getString(0));
+            registeredSecondary.setSecondaryId(cursor.getInt(1));
+            registeredSecondary.setSecondaryOptic(cursor.getString(2));
+            registeredSecondary.setSecondaryMuzzle(cursor.getString(3));
+            registeredSecondary.setSecondaryBarrel(cursor.getString(4));
+            registeredSecondary.setSecondaryMagazine(cursor.getString(5));
+            registeredSecondary.setSecondaryGrip(cursor.getString(6));
+
+            SecondarySessionData.setRegisteredSecondary(registeredSecondary);
+        }
+        else {
+            SecondarySessionData.setRegisteredSecondary(null);
+        }
+
+        db.close();
+    }
+
+    public void getAllTacticalInfoGivenID(int i){
+        Tactical registeredTactical = new Tactical();
+
+        String query = "SELECT * FROM " + tactical_table_name + " WHERE tacticalId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredTactical.setTacticalName(cursor.getString(0));
+            registeredTactical.setTacticalId(cursor.getInt(1));
+
+            TacticalSessionData.setRegisteredTactical(registeredTactical);
+        }
+        else {
+            TacticalSessionData.setRegisteredTactical(null);
+        }
+        db.close();
+    }
+
+    public void getAllLethalInfoGivenID(int i){
+        Lethal registeredLethal = new Lethal();
+
+        String query = "SELECT * FROM " + lethal_table_name + " WHERE lethalId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredLethal.setLethalName(cursor.getString(0));
+            registeredLethal.setLethalId(cursor.getInt(1));
+
+            LethalSessionData.setRegisteredLethal(registeredLethal);
+        }
+        else {
+            LethalSessionData.setRegisteredLethal(registeredLethal);
+        }
+        db.close();
+    }
+
+    public void getAllPerksInfoGivenID(int i){
+        Perks registeredPerks = new Perks();
+
+        String query = "SELECT * FROM " + perks_table_name + " WHERE perksId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredPerks.setPerkId(cursor.getInt(0));
+            registeredPerks.setPerk1(cursor.getString(1));
+            registeredPerks.setPerk2(cursor.getString(2));
+            registeredPerks.setPerk3(cursor.getString(3));
+
+            PerksSessionData.setRegisteredPerks(registeredPerks);
+        }
+        else {
+            PerksSessionData.setRegisteredPerks(null);
+        }
+        db.close();
+    }
+
+    public void updateUser(String u, String fn, String ln, String e, int a){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("username", u);
+        values.put("fname", fn);
+        values.put("lname", ln);
+        values.put("email", e);
+        values.put("age", a);
+
+        String query = "UPDATE " + user_table_name + " SET 'username' = u, 'fname' = fn, 'lname' = ln, 'email' = e, 'age' = a " + " WHERE username = '" + u + "';";
+
+        db.execSQL(query);
 
         db.close();
     }

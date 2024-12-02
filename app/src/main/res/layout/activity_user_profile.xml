@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
+    tools:context=".userProfile">
+
+    <Button
+        android:id="@+id/btn_v_prof_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="200dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Update"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_prof_delete"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_prof_back" />
+
+    <Button
+        android:id="@+id/btn_v_prof_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="200dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Delete"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_prof_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="200dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_prof_fname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:fontFamily="@font/allerta_stencil"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView39"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Email"
+        android:textColor="#FA6700"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_prof_email"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Last Name"
+        android:textColor="#FA6700"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_prof_lname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_prof_age"
+        android:layout_width="233dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="55dp"
+        android:ems="10"
+        android:fontFamily="@font/allerta_stencil"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_prof_update"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_prof_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:fontFamily="@font/allerta_stencil"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView43"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_v_prof_lname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:fontFamily="@font/allerta_stencil"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textView41"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Age"
+        android:textColor="#FA6700"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_prof_age"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="First Name"
+        android:textColor="#FA6700"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_prof_fname"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="133dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,20 @@
     android:background="@drawable/bo6background2"
     tools:context=".welcomeScreen">
 
+    <Button
+        android:id="@+id/btn_v_wel_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="View Profile"
+        android:textSize="24sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_wel_signout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -26,43 +40,46 @@
         android:id="@+id/btn_v_wel_userLoadouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="View your Loadouts"
         android:textAlignment="center"
         android:textSize="24sp"
         app:cornerRadius="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_wel_allLoadouts"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_wel_make" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_v_wel_make"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Make Loadout"
         android:textAlignment="center"
         android:textSize="30sp"
         app:cornerRadius="0sp"
-        app:layout_constraintStart_toStartOf="@+id/btn_v_wel_search"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_wel_search" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_wel_userLoadouts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_v_wel_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Search Loadouts"
         android:textAlignment="center"
         android:textSize="30sp"
         app:cornerRadius="0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_wel_make"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_welcome_user" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_v_welcome_user"
@@ -95,27 +112,27 @@
         android:id="@+id/btn_v_wel_allLoadouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="View All Loadouts"
         android:textSize="24sp"
         app:cornerRadius="0sp"
-        app:layout_constraintStart_toStartOf="@+id/btn_v_wel_userLoadouts"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_wel_userLoadouts" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_wel_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_v_wel_signout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="54dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Sign Out"
         android:textSize="26sp"
         app:cornerRadius="0sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_v_wel_userLoadouts"
-        app:layout_constraintStart_toStartOf="@+id/btn_v_wel_allLoadouts"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_wel_allLoadouts" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

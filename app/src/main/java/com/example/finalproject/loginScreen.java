@@ -83,8 +83,10 @@ public class loginScreen extends AppCompatActivity {
                         if (uname.equals(dbHelper.allUsersList().get(i).getUsername())){
                             //Log.d("Cranberry", "Got Here");
                             tv_j_userNameUsed.setVisibility(View.INVISIBLE);
-                            startActivity(intent_j_login);
                             dbHelper.getAllUserInfoGivenUsername(uname);
+                            //intent_j_login.putExtra("DisplayUName", uname);
+                            startActivity(intent_j_login);
+                            et_j_uName.setText("");
                             return;
                         }
                         tv_j_userNameUsed.setVisibility(View.VISIBLE);
