@@ -667,18 +667,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Might be .getWriteableDatabase
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put("username", u);
-        values.put("fname", fn);
-        values.put("lname", ln);
-        values.put("email", e);
-        values.put("age", a);
+        //ContentValues values = new ContentValues();
+        //values.put("username", u);
+        //values.put("fname", fn);
+        //values.put("lname", ln);
+        //values.put("email", e);
+        //values.put("age", a);
 
         //db.update(user_table_name, values, "username = ?", new User "u");
 
-        //String query = " UPDATE " + user_table_name + " SET 'fname' = fn, 'lname' = ln, 'email' = e, 'age' = a " + " WHERE username = '" + u + "';";
+        String query = "UPDATE " + user_table_name + " SET fname = '" + fn + "', '" + lname = ln + "', '" + email = e + "', '" + age = a + "' + " WHERE username = '" + u + "';";
 
-        //db.execSQL(query);
+        db.execSQL(query);
 
         db.close();
     }
