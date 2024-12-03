@@ -10,9 +10,6 @@ import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class userProfile extends AppCompatActivity {
 
@@ -51,9 +48,9 @@ public class userProfile extends AppCompatActivity {
         intent_j_backToWelcome = new Intent(userProfile.this, welcomeScreen.class);
         intent_j_backToLogin   = new Intent(userProfile.this, loginScreen.class);
 
-        Log.d("DragonFruit", SessionData.getRegisteredUser().getUsername());
+        Log.d("DragonFruit", SessionData.getRegisteredUser().getUname());
 
-        String uname = SessionData.getRegisteredUser().getUsername();
+        String uname = SessionData.getRegisteredUser().getUname();
 
         et_j_fname.setText(SessionData.getRegisteredUser().getFname());
         et_j_lname.setText(SessionData.getRegisteredUser().getLname());
@@ -64,7 +61,8 @@ public class userProfile extends AppCompatActivity {
         et_j_age.setText(age);
 
         backBtnListener();
-
+        updateBtnListener(uname);
+        deleteUserBtnListener(uname);
     }
 
     private void backBtnListener(){
@@ -76,11 +74,22 @@ public class userProfile extends AppCompatActivity {
         });
     }
 
-    private void updateBtnListener(String uname){
+    //Can't update the user profiles
+    private void updateBtnListener(String u){
         btn_j_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbHelper.updateUser(uname, et_j_fname.getText().toString(), et_j_lname.getText().toString(), et_j_email.getText().toString(), Integer.parseInt(et_j_age.getText().toString()));
+                dbHelper.updateUser(u, et_j_fname.getText().toString(), et_j_lname.getText().toString(), et_j_email.getText().toString(), Integer.parseInt(et_j_age.getText().toString()));
+                startActivity(intent_j_backToLogin);
+            }
+        });
+    }
+
+    private void deleteUserBtnListener(String u){
+        btn_j_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.deleteUser(u);
                 startActivity(intent_j_backToLogin);
             }
         });

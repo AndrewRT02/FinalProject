@@ -79,8 +79,15 @@ public class viewLoadouts extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int lId;
                 lId = listOfLoadouts.get(i).getLoadoutId();
+                //intent_j_loadoutInfo.putExtra("findThisId", lId);
 
-                intent_j_loadoutInfo.putExtra("findThisId", lId);
+                dbHelper.getAllLoadoutInfoGivenLoadoutId(lId);
+                dbHelper.getAllPrimaryInfoGivenId(lId);
+                dbHelper.getAllSecondaryInfoGivenID(lId);
+                dbHelper.getAllTacticalInfoGivenID(lId);
+                dbHelper.getAllLethalInfoGivenID(lId);
+                dbHelper.getAllPerksInfoGivenID(lId);
+
                 startActivity(intent_j_loadoutInfo);
 
             }

@@ -75,12 +75,11 @@ public class loginScreen extends AppCompatActivity {
                 String uname = et_j_uName.getText().toString();
 
                 //-------------------------Remember to add the error field checking---------------------------------
-                //Remember to remove the commented out section
 
                 if (bool){
                     //Log.d("Cranberry", "Got Here");
                     for (int i = 0; i < dbHelper.allUsersList().size(); i++){
-                        if (uname.equals(dbHelper.allUsersList().get(i).getUsername())){
+                        if (uname.equals(dbHelper.allUsersList().get(i).getUname())){
                             //Log.d("Cranberry", "Got Here");
                             tv_j_userNameUsed.setVisibility(View.INVISIBLE);
                             dbHelper.getAllUserInfoGivenUsername(uname);

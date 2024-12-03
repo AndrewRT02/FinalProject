@@ -6,27 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bo6background2"
-    tools:context=".primaryInfo">
+    tools:context=".secondaryInfo">
 
     <Button
-        android:id="@+id/btn_v_pInfo_update"
+        android:id="@+id/btn_v_sInfo_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="26dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Back"
+        android:text="Update"
         android:textSize="18sp"
         android:visibility="invisible"
         app:cornerRadius="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_pInfo_back"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_sInfo_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/btn_v_pInfo_back"
+        android:id="@+id/btn_v_sInfo_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_stock"
+        android:id="@+id/tv_v_sInfo_rGrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -60,13 +60,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Stock:"
+        android:text="Rear Grip:"
         android:textColor="#FA6700"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_ubarrel" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_magazine" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_ubarrel"
+        android:id="@+id/tv_v_sInfo_magazine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -88,13 +88,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Underbarrel:"
+        android:text="Magazine:"
         android:textColor="#FA6700"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_barrel" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_barrel" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_barrel"
+        android:id="@+id/tv_v_sInfo_barrel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -119,10 +119,10 @@
         android:text="Barrel:"
         android:textColor="#FA6700"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_muzzle" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_muzzle" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_muzzle"
+        android:id="@+id/tv_v_sInfo_muzzle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -147,10 +147,10 @@
         android:text="Muzzle:"
         android:textColor="#FA6700"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_optic" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_optic" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_pName"
+        android:id="@+id/tv_v_sInfo_sName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
@@ -162,10 +162,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_lName" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_lName" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_optic"
+        android:id="@+id/tv_v_sInfo_optic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -192,7 +192,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_v_pInfo_lName"
+        android:id="@+id/tv_v_sInfo_lName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
@@ -208,13 +208,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_v_pInfo_primaryImage"
+        android:id="@+id/iv_v_sInfo_secondaryImage"
         android:layout_width="158dp"
         android:layout_height="401dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_v_pInfo_pName"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_sName"
         app:srcCompat="@drawable/xm4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

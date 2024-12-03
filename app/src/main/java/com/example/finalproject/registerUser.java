@@ -1,15 +1,8 @@
 package com.example.finalproject;
 
-import android.Manifest;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +12,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
 
 public class registerUser extends AppCompatActivity {
     EditText et_j_username;
@@ -106,7 +97,7 @@ public class registerUser extends AppCompatActivity {
                 if (bool){
                     //Log.d("Cranberry", "Got Here");
                     for (int i = 0; i < dbHelper.allUsersList().size(); i++){
-                        if (uname.equals(dbHelper.allUsersList().get(i).getUsername()) || email.equalsIgnoreCase(dbHelper.allUsersList().get(i).getEmail())){
+                        if (uname.equals(dbHelper.allUsersList().get(i).getUname()) || email.equalsIgnoreCase(dbHelper.allUsersList().get(i).getEmail())){
                             //Log.d("Cranberry", "Got Here");
                             tv_j_ueError.setVisibility(View.VISIBLE);
                             return;

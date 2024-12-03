@@ -33,7 +33,6 @@ public class loadoutInfo extends AppCompatActivity {
     Button btn_j_secondary;
 
     Intent intent_j_backToViewLoadouts;
-    Intent intent_j_updateLoadout;
     Intent intent_j_seePrimary;
     Intent intent_j_seeSecondary;
 
@@ -60,8 +59,6 @@ public class loadoutInfo extends AppCompatActivity {
 
         btn_j_rate      = findViewById(R.id.btn_v_info_addRating);
         btn_j_rate.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_update    = findViewById(R.id.btn_v_info_update);
-        btn_j_update.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_back      = findViewById(R.id.btn_v_info_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_primary   = findViewById(R.id.btn_v_info_primary);
@@ -70,17 +67,19 @@ public class loadoutInfo extends AppCompatActivity {
         btn_j_secondary.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_backToViewLoadouts = new Intent(loadoutInfo.this, viewLoadouts.class);
-        //intent_j_updateLoadout      = new Intent();
-        //intent_j_seePrimary         = new Intent();
-        //intent_j_seeSecondary       = new Intent();
+        intent_j_seePrimary = new Intent(loadoutInfo.this, primaryInfo.class);
+        intent_j_seeSecondary       = new Intent(loadoutInfo.this, secondaryInfo.class);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null){
-            int lId = extras.getInt("findThisId");
+        //When I go back to the Loadout Screen from Primary/Secondary it erases all of the info in Loadout Info
+        //Find a way around this
 
-            dbHelper.getAllLoadoutInfoGivenLoadoutId(lId);
+        //Bundle extras = getIntent().getExtras();
+        //if (extras != null){
+        //    int lId = extras.getInt("findThisId");
 
-            Log.d("Grape", LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
+            //dbHelper.getAllLoadoutInfoGivenLoadoutId(lId);
+
+            //Log.d("Grape", LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
 
             tv_j_lName.setText(LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
 
@@ -92,27 +91,29 @@ public class loadoutInfo extends AppCompatActivity {
             tv_j_melee.setText(LoadoutSessionData.getRegisteredLoadout().getMelee());
             tv_j_fU.setText(LoadoutSessionData.getRegisteredLoadout().getFieldUpgrade());
 
-            dbHelper.getAllPrimaryInfoGivenId(lId);
+            //dbHelper.getAllPrimaryInfoGivenId(lId);
             tv_j_primary.setText(PrimarySessionData.getRegisteredPrimary().getPrimaryName());
 
-            dbHelper.getAllSecondaryInfoGivenID(lId);
+            //dbHelper.getAllSecondaryInfoGivenID(lId);
             tv_j_secondary.setText(SecondarySessionData.getRegisteredSecondary().getSecondaryName());
 
-            dbHelper.getAllTacticalInfoGivenID(lId);
+            //dbHelper.getAllTacticalInfoGivenID(lId);
             tv_j_tactical.setText(TacticalSessionData.getRegisteredTactical().getTacticalName());
 
-            dbHelper.getAllLethalInfoGivenID(lId);
+            //dbHelper.getAllLethalInfoGivenID(lId);
             tv_j_lethal.setText(LethalSessionData.getRegisteredLethal().getLethalName());
 
-            dbHelper.getAllPerksInfoGivenID(lId);
+            //dbHelper.getAllPerksInfoGivenID(lId);
             tv_j_p1.setText(PerksSessionData.getRegisteredPerks().getPerk1());
             tv_j_p2.setText(PerksSessionData.getRegisteredPerks().getPerk2());
             tv_j_p3.setText(PerksSessionData.getRegisteredPerks().getPerk3());
 
-        }
+        //}
 
 
         backToViewLoadotsBtnListener();
+        toPrimaryInfoBtnListener();
+        toSecondaryInfoBtnListener();
     }
 
     private void backToViewLoadotsBtnListener(){
@@ -120,6 +121,24 @@ public class loadoutInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_backToViewLoadouts);
+            }
+        });
+    }
+
+    private void toPrimaryInfoBtnListener(){
+        btn_j_primary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_seePrimary);
+            }
+        });
+    }
+
+    private void toSecondaryInfoBtnListener(){
+        btn_j_secondary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_seeSecondary);
             }
         });
     }

@@ -214,17 +214,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(secondary_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 1, 'Iron Sight', 'Suppresor', 'Long Barrel', 'Extended Magazine', 'Quickdraw Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9MM PM', 1, 'Iron Sight', 'Suppresor', 'Long Barrel', 'Extended Magazine', 'Quickdraw Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 2, 'Kepler Microflex', 'Compensator', 'CHF Barrel', 'Fast Mag I', 'Assault Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 3, 'Merlin Mini', 'Suppressor', 'Short Barrel', 'Extended Mag II', 'CQB Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 4, 'Accu-Spot Reflex', 'Ported Compensator', 'Reinforced Barrel', 'Fast Mag II', 'CQB Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 5, 'Iron Sights', 'Ported Compensator', 'Long Barrel', 'Extended Mag I', 'Commando Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 6, 'Otero Micro Dot', 'Compensator', 'Gain-Twist Barrel', 'Fast Magg II', 'Ergonomic Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 7, 'Kepler Pistol Scope', 'Muzzle Brake', 'Long Barrel', 'Extended Mag II', 'Ergonomic Grip')");
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 8, 'Iron Sights', 'Ported Compensator', 'CHF Barrel', 'Stock Mag', 'CQB Grip')");
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9mm PM', 9, 'Iron Sights', 'Suppressor', 'Gain-Twisted Barrel', 'Fast Mag II', 'Commando Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9MM PM', 8, 'Iron Sights', 'Ported Compensator', 'CHF Barrel', 'Stock Mag', 'CQB Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9MM PM', 9, 'Iron Sights', 'Suppressor', 'Gain-Twisted Barrel', 'Fast Mag II', 'Commando Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 10, 'Kepler Microflex', 'Muzzle Brake', 'Reinforced Barrel', 'Stock Mag', 'Assault Grip')");
-            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('Stryder .22', 11, 'Accu-Spot Reflex', 'Compensator', 'Short Barrel', 'Extended Mag I', 'Quickdraw Grip')");
+            db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 11, 'Accu-Spot Reflex', 'Compensator', 'Short Barrel', 'Extended Mag I', 'Quickdraw Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 12, 'Otero Micro Dot', 'Suppressor', 'Long Barrel', 'Fast Mag I', 'Assault Grip')");
 
 
@@ -465,7 +465,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String query;
-        query = "INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('" + u.getUsername() + "', '" + u.getFname() + "', '" + u.getLname() + "', '" + u.getEmail() + "', '" + u.getAge() + "');";
+        query = "INSERT INTO " + user_table_name + "(username, fname, lname, email, age) VALUES ('" + u.getUname() + "', '" + u.getFname() + "', '" + u.getLname() + "', '" + u.getEmail() + "', '" + u.getAge() + "');";
 
         db.execSQL(query);
 
@@ -476,7 +476,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         User registeredUser = new User();
 
         String query;
-        query = "SELECT * FROM " + user_table_name + " WHERE username= '" + u + "';";
+        query = "SELECT * FROM " + user_table_name + " WHERE username = '" + u + "';";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -485,7 +485,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null){
             cursor.moveToFirst();
 
-            registeredUser.setUsername(cursor.getString(0));
+            registeredUser.setUname(cursor.getString(0));
             registeredUser.setFname(cursor.getString(1));
             registeredUser.setLname(cursor.getString(2));
             registeredUser.setEmail(cursor.getString(3));
@@ -664,6 +664,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateUser(String u, String fn, String ln, String e, int a){
+        //Might be .getWriteableDatabase
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -673,7 +674,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("email", e);
         values.put("age", a);
 
-        String query = "UPDATE " + user_table_name + " SET 'username' = u, 'fname' = fn, 'lname' = ln, 'email' = e, 'age' = a " + " WHERE username = '" + u + "';";
+        //db.update(user_table_name, values, "username = ?", new User "u");
+
+        //String query = " UPDATE " + user_table_name + " SET 'fname' = fn, 'lname' = ln, 'email' = e, 'age' = a " + " WHERE username = '" + u + "';";
+
+        //db.execSQL(query);
+
+        db.close();
+    }
+
+    public void deleteUser(String u){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "DELETE FROM " + user_table_name + " WHERE username = '" + u + "';";
 
         db.execSQL(query);
 

@@ -15,6 +15,18 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".makePerks"
+            android:exported="false" />
+        <activity
+            android:name=".makeSecondary"
+            android:exported="false" />
+        <activity
+            android:name=".makePrimary"
+            android:exported="false" />
+        <activity
+            android:name=".secondaryInfo"
+            android:exported="false" />
+        <activity
             android:name=".primaryInfo"
             android:exported="false" />
         <activity

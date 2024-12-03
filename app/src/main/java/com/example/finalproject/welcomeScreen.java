@@ -10,13 +10,10 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class welcomeScreen extends AppCompatActivity {
 
-    TextView tv_j_user;
+    //TextView tv_j_user;
 
     Button btn_j_search;
     Button btn_j_make;
@@ -38,7 +35,7 @@ public class welcomeScreen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_welcome_screen);
 
-        tv_j_user           = findViewById(R.id.tv_v_welcome_user);
+        //tv_j_user           = findViewById(R.id.tv_v_welcome_user);
 
         btn_j_search        = findViewById(R.id.btn_v_wel_search);
         btn_j_search.setBackgroundColor(Color.rgb(250, 103, 0));
@@ -61,10 +58,11 @@ public class welcomeScreen extends AppCompatActivity {
         //Bundle extras = getIntent().getExtras();
         //String uname = extras.getString("DisplayUName");
 
+        //For some reason when I try to put Username into tv_j_user, it crashes
 
-        //String uname = SessionData.getRegisteredUser().getUsername();
+        //String uname = SessionData.getRegisteredUser().getUname();
 
-        tv_j_user.setText(SessionData.getRegisteredUser().getUsername());
+        //tv_j_user.setText(SessionData.getRegisteredUser().getUname());
 
         dbHelper.initAllTables();
 

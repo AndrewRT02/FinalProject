@@ -1,9 +1,7 @@
 package com.example.finalproject;
 
-import java.sql.Date;
-
 public class User {
-    String username;    //Primary Key
+    String uname;    //Primary Key
     String fname;
     String lname;
     String email;
@@ -14,19 +12,19 @@ public class User {
     }
 
     public User(String u, String f, String l, String e, int a){
-        username = u;
+        uname = u;
         fname = f;
         lname = l;
         email = e;
         age = a;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUname() {
+        return uname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     public String getFname() {

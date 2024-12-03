@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
@@ -91,14 +88,14 @@ public class searchLoadouts extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search_loadouts);
 
-        btn_j_back   = findViewById(R.id.btn_v_search_back);
+        btn_j_back   = findViewById(R.id.btn_v_makeS_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_search = findViewById(R.id.btn_v_search_search);
+        btn_j_search = findViewById(R.id.btn_v_makeS_next);
         btn_j_search.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_welcome    = new Intent(searchLoadouts.this, welcomeScreen.class);
 
-        primarySel = findViewById(R.id.tv_primary_selection);
+        primarySel = findViewById(R.id.tv_makeS_secondary_selection);
 
         //-----------------------------Primaries--------------------------------
         primaries = new ArrayList<>();
@@ -141,7 +138,7 @@ public class searchLoadouts extends AppCompatActivity {
         primarySelClickListenerTextView();
 
 
-        secondarySel = findViewById(R.id.tv_secondary_selection);
+        secondarySel = findViewById(R.id.tv_makeS_optic_selection);
 
         //-----------------------------Secondaries--------------------------------
         secondaries = new ArrayList<>();
@@ -155,7 +152,7 @@ public class searchLoadouts extends AppCompatActivity {
         secondarySelClickListenerTextView();
 
 
-        tacticalSel = findViewById(R.id.tv_tactical_selection);
+        tacticalSel = findViewById(R.id.tv_makeS_muzzle_selection);
 
         //-----------------------------Tacticals--------------------------------
         tacticals = new ArrayList<>();
@@ -173,7 +170,7 @@ public class searchLoadouts extends AppCompatActivity {
         tacticalSelClickListenerTextView();
 
 
-        lethalSel = findViewById(R.id.tv_lethal_selection);
+        lethalSel = findViewById(R.id.tv_makeS_barrel_selection);
 
         //-----------------------------Lethals--------------------------------
         lethals = new ArrayList<>();
@@ -192,7 +189,7 @@ public class searchLoadouts extends AppCompatActivity {
         lethalSelClickListenerTextView();
 
 
-        meleeSel = findViewById(R.id.tv_melee_selection);
+        meleeSel = findViewById(R.id.tv_makeS_mag_selection);
         //-----------------------------Melees--------------------------------
         melee = new ArrayList<>();
 
@@ -204,7 +201,7 @@ public class searchLoadouts extends AppCompatActivity {
         meleeSelClickListenerTextView();
 
 
-        fieldUpgradeSel = findViewById(R.id.tv_fieldUpgrade_selection);
+        fieldUpgradeSel = findViewById(R.id.tv_makeS_grip_selection);
         //-----------------------------Field Upgrades--------------------------------
         fieldUpgrades = new ArrayList<>();
 
