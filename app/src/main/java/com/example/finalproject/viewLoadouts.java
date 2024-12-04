@@ -22,6 +22,7 @@ public class viewLoadouts extends AppCompatActivity {
     static ArrayList<Loadout> listOfLoadouts;
     static ArrayList<Primary> listOfPrimaries;
     static ArrayList<Secondary> listOfSecondaries;
+    static ArrayList<LoadoutRating> listOfLoadoutRatings;
 
     Button btn_j_back;
 
@@ -60,7 +61,7 @@ public class viewLoadouts extends AppCompatActivity {
     }
 
    private void fillListView(){
-       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries);
+       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries, listOfLoadoutRatings);
        lv_j_listOfLoadouts.setAdapter(adapter);
    }
 

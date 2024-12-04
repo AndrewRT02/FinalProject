@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -15,12 +16,14 @@ public class LoadoutListAdapter extends BaseAdapter {
     ArrayList<Loadout> listOfLoadouts;
     ArrayList<Primary> listOfPrimaries;
     ArrayList<Secondary> listOfSecondaries;
+    ArrayList<LoadoutRating> listOfLoadoutRatings;
 
-    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls){
+    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls, ArrayList<LoadoutRating> llr){
         context = c;
         listOfLoadouts = ll;
         listOfPrimaries = lp;
         listOfSecondaries = ls;
+        listOfLoadoutRatings = llr;
     }
 
     @Override

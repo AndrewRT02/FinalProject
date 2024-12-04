@@ -82,20 +82,22 @@ public class searchLoadouts extends AppCompatActivity {
     Intent intent_j_welcome;
     Intent intent_j_searchResults;
 
+    DatabaseHelper db = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search_loadouts);
 
-        btn_j_back   = findViewById(R.id.btn_v_makeS_back);
+        btn_j_back   = findViewById(R.id.btn_v_search_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_search = findViewById(R.id.btn_v_makeS_next);
+        btn_j_search = findViewById(R.id.btn_v_search_search);
         btn_j_search.setBackgroundColor(Color.rgb(250, 103, 0));
 
         intent_j_welcome    = new Intent(searchLoadouts.this, welcomeScreen.class);
 
-        primarySel = findViewById(R.id.tv_makeS_secondary_selection);
+        primarySel = findViewById(R.id.tv_search_primary_selection);
 
         //-----------------------------Primaries--------------------------------
         primaries = new ArrayList<>();
@@ -138,7 +140,7 @@ public class searchLoadouts extends AppCompatActivity {
         primarySelClickListenerTextView();
 
 
-        secondarySel = findViewById(R.id.tv_makeS_optic_selection);
+        secondarySel = findViewById(R.id.tv_search_secondary_selection);
 
         //-----------------------------Secondaries--------------------------------
         secondaries = new ArrayList<>();
@@ -152,7 +154,7 @@ public class searchLoadouts extends AppCompatActivity {
         secondarySelClickListenerTextView();
 
 
-        tacticalSel = findViewById(R.id.tv_makeS_muzzle_selection);
+        tacticalSel = findViewById(R.id.tv_search_tactical_selection);
 
         //-----------------------------Tacticals--------------------------------
         tacticals = new ArrayList<>();
@@ -170,7 +172,7 @@ public class searchLoadouts extends AppCompatActivity {
         tacticalSelClickListenerTextView();
 
 
-        lethalSel = findViewById(R.id.tv_makeS_barrel_selection);
+        lethalSel = findViewById(R.id.tv_search_lethal_selection);
 
         //-----------------------------Lethals--------------------------------
         lethals = new ArrayList<>();
@@ -189,7 +191,7 @@ public class searchLoadouts extends AppCompatActivity {
         lethalSelClickListenerTextView();
 
 
-        meleeSel = findViewById(R.id.tv_makeS_mag_selection);
+        meleeSel = findViewById(R.id.tv_search_melee_selection);
         //-----------------------------Melees--------------------------------
         melee = new ArrayList<>();
 
@@ -201,7 +203,7 @@ public class searchLoadouts extends AppCompatActivity {
         meleeSelClickListenerTextView();
 
 
-        fieldUpgradeSel = findViewById(R.id.tv_makeS_grip_selection);
+        fieldUpgradeSel = findViewById(R.id.tv_search_fU_selection);
         //-----------------------------Field Upgrades--------------------------------
         fieldUpgrades = new ArrayList<>();
 
@@ -246,6 +248,7 @@ public class searchLoadouts extends AppCompatActivity {
         endRatings.add("5");
 
         endRatingSelClickListenerTextView();
+
 
 
         backBtnListener();
@@ -665,6 +668,17 @@ public class searchLoadouts extends AppCompatActivity {
             }
         });
     }
+
+    private void searchLoadoutsBtnListener(){
+        btn_j_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+
 
 
 }

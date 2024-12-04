@@ -479,6 +479,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
+    public Double getLoadoutRatingFromId(int Id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT AVG(loadoutRating) FROM " + loadoutRating_table_name + " WHERE loadoutId= '" + Id + "';";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+
+        //Log.d("Blueberry", cursor.getString(0));
+
+        db.close();
+
+        return cursor.getDouble(0);
+    }
+
     public String getSecondaryNameFromId(int Id){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -725,6 +741,119 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
 
         db.close();
+    }
+
+    public int getIdFromPrimaryName(String str){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + primary_table_name + " WHERE primaryName = '" + str + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        cursor.getInt(0);
+
+        db.close();
+
+        return cursor.getInt(0);
+    }
+
+    public int getIdFromSecondaryName(String str){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + secondary_table_name + " WHERE secondaryName = '" + str + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        cursor.getInt(0);
+
+        db.close();
+
+        return cursor.getInt(0);
+    }
+
+    public int getIdFromTacticalName(String str){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + tactical_table_name + " WHERE tacticalName = '" + str + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        cursor.getInt(0);
+
+        db.close();
+
+        return cursor.getInt(0);
+    }
+
+    public int getIdFromLethalName(String str){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + lethal_table_name + " WHERE lethalName = '" + str + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        cursor.getInt(0);
+
+        db.close();
+
+        return cursor.getInt(0);
+    }
+
+    public void searchLoadouts(String p, String s, String t, String l, String m, String fU, int sR, int eR){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        StringBuilder query;
+        query = new StringBuilder(" SELECT loadoutId FROM " + loadoutRating_table_name + " WHERE AVG(loadoutRating) BETWEEN '" + sR + "' AND '" + eR + "';");
+
+        Cursor cursor;
+
+        cursor = db.rawQuery(query.toString(), null);
+
+        ArrayList<Integer> listOfInts = new ArrayList<>();
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            query = new StringBuilder(" SELECT * FROM " + loadout_table_name + " WHERE loadoutId IN ( ");
+
+            for (int i = 0; i < cursor.getCount(); i++){
+                query.append("i, ");
+            }
+            query.setCharAt(query.length()-2, ')');
+        }
+
+
+        query = new StringBuilder("SELECT * FROM + loadout" + getLoadoutDbName() + " WHERE ");
+
+        if (p != ""){
+            query.append(" primaryGun = '").append(getIdFromPrimaryName(p)).append("',");
+        }
+        if (s != ""){
+            query.append(" secondaryGun = '").append(getIdFromSecondaryName(s)).append("',");
+        }
+        if (t != ""){
+            query.append(" tactical = '").append(getIdFromTacticalName(t)).append("',");
+        }
+        if (l != ""){
+            query.append(" lethal = '").append(getIdFromLethalName(l)).append("',");
+        }
+        if (m != ""){
+            query.append(" melee = '").append(m).append("';");
+        }
+        if (fU != ""){
+            query.append(" fieldUpgrade = '").append(fU).append("',");
+        }
+        if (sR && eR){
+            query.append(" ")
+        }
     }
 
 }
