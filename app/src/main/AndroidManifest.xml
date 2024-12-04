@@ -15,6 +15,15 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".viewYourLoadout"
+            android:exported="false" />
+        <activity
+            android:name=".viewUsersLoadouts"
+            android:exported="false" />
+        <activity
+            android:name=".usersLaodoutCell"
+            android:exported="false" />
+        <activity
             android:name=".makePerks"
             android:exported="false" />
         <activity

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -133,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (countRecordsFromTables(loadout_table_name) == 0){
             SQLiteDatabase db = this.getWritableDatabase();
 
-            db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Zmoore', 'DeZtroyer Build', 1, 1, 1, 1, 1, 1, 'Baseball Bat', 'Trophy System');");
+            db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('ZMoore', 'DeZtroyer Build', 1, 1, 1, 1, 1, 1, 'Baseball Bat', 'Trophy System');");
             db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('PumpkinEater69', 'Petah Build', 2, 2, 2, 2, 2, 2, 'Knife', 'Spring Mine');");
             db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('xX_c00lguy_Xx', 'WoW', 3, 3, 3, 3, 3, 3, 'Knife', 'Trophy System');");
             db.execSQL("INSERT INTO " + loadout_table_name + "(creator, loadoutName, loadoutId, primaryGun, secondaryGun, tactical, lethal, perks, melee, fieldUpgrade) VALUES ('Punisher', 'BackinNam', 4, 4, 4, 4, 4, 4, 'Baseball Bat', 'Sleeper Agent');");
@@ -375,6 +376,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return loadoutArrayList;
+    }
+
+    public ArrayList<Loadout> allLoadoutsListGivenUsername(String u){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + loadout_table_name + " WHERE creator = '" + u +"';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        ArrayList<Loadout> usersLoadoutArrayList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do {
+                usersLoadoutArrayList.add(new Loadout(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7),
+                        cursor.getString(8),
+                        cursor.getString(9))
+                );
+            }
+            while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        //Log.d("Pumpkin", usersLoadoutArrayList.get(0).getLoadoutName());
+
+        return usersLoadoutArrayList;
     }
 
     public ArrayList<Primary> allPrimariesList(){
@@ -676,7 +710,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //db.update(user_table_name, values, "username = ?", new User "u");
 
-        String query = "UPDATE " + user_table_name + " SET fname = '" + fn + "', '" + lname = ln + "', '" + email = e + "', '" + age = a + "' + " WHERE username = '" + u + "';";
+        String query = "UPDATE " + user_table_name + " SET fname = '" + fn + "', lname = '" + ln + "',  email = '" + e + "', age = '" + a + "' WHERE username = '" + u + "';";
 
         db.execSQL(query);
 

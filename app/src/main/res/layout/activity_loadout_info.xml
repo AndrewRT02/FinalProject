@@ -317,7 +317,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="9dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Creator"
+        android:text="Creator:"
         android:textColor="#FA6700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView32" />

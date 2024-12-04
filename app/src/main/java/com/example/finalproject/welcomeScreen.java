@@ -22,10 +22,13 @@ public class welcomeScreen extends AppCompatActivity {
     Button btn_j_profile;
     Button btn_j_signOut;
 
-    Intent intent_j_allLoadouts;
-    Intent intent_j_loginScreen;
+
     Intent intent_j_searchLoadout;
+    Intent intent_j_makeLoadoutStep1;
+    Intent intent_j_viewUserLoadouts;
+    Intent intent_j_allLoadouts;
     Intent intent_j_profile;
+    Intent intent_j_loginScreen;
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -50,10 +53,13 @@ public class welcomeScreen extends AppCompatActivity {
         btn_j_signOut       = findViewById(R.id.btn_v_wel_signout);
         btn_j_signOut.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        intent_j_allLoadouts    = new Intent(welcomeScreen.this, viewLoadouts.class);
-        intent_j_loginScreen    = new Intent(welcomeScreen.this, loginScreen.class);
+
         intent_j_searchLoadout  = new Intent(welcomeScreen.this, searchLoadouts.class);
+        intent_j_makeLoadoutStep1 = new Intent(welcomeScreen.this, makePrimary.class);
+        intent_j_viewUserLoadouts = new Intent(welcomeScreen.this, viewUsersLoadouts.class);
+        intent_j_allLoadouts    = new Intent(welcomeScreen.this, viewLoadouts.class);
         intent_j_profile        = new Intent(welcomeScreen.this, userProfile.class);
+        intent_j_loginScreen    = new Intent(welcomeScreen.this, loginScreen.class);
 
         //Bundle extras = getIntent().getExtras();
         //String uname = extras.getString("DisplayUName");
@@ -68,10 +74,13 @@ public class welcomeScreen extends AppCompatActivity {
 
         Log.d("AppleJack", dbHelper.getPrimaryNameFromId(1));
 
-        allLoadoutsBtnListener();
-        signOutBtnListener();
+
         searchLoadoutBtnListener();
+        makeLoadoutBtnListener();
+        usersLoadoutsBtnListener();
+        allLoadoutsBtnListener();
         userProfileBtnListener();
+        signOutBtnListener();
     }
 
     private void allLoadoutsBtnListener(){
@@ -106,6 +115,24 @@ public class welcomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_profile);
+            }
+        });
+    }
+
+    private void makeLoadoutBtnListener(){
+        btn_j_make.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_makeLoadoutStep1);
+            }
+        });
+    }
+
+    private void usersLoadoutsBtnListener(){
+        btn_j_userLoadouts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_viewUserLoadouts);
             }
         });
     }
