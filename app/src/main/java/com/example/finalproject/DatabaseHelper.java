@@ -851,9 +851,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (fU != ""){
             query.append(" fieldUpgrade = '").append(fU).append("',");
         }
-        if (sR && eR){
-            query.append(" ")
-        }
+        //if (sR && eR){
+        //    query.append(" ")
+        //}
     }
 
 }

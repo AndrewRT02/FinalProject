@@ -13,6 +13,7 @@ import android.widget.ListView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class viewLoadouts extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class viewLoadouts extends AppCompatActivity {
     static ArrayList<Primary> listOfPrimaries;
     static ArrayList<Secondary> listOfSecondaries;
     static ArrayList<LoadoutRating> listOfLoadoutRatings;
+    static ArrayList<Double> loadoutRatings;
 
     Button btn_j_back;
 
@@ -41,6 +43,8 @@ public class viewLoadouts extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_view_loadouts);
 
+        DecimalFormat df = new DecimalFormat("#.00");
+
         lv_j_listOfLoadouts = findViewById(R.id.lv_v_view_listOfLoadouts);
 
         btn_j_back = findViewById(R.id.btn_v_view_back);
@@ -53,6 +57,15 @@ public class viewLoadouts extends AppCompatActivity {
         listOfPrimaries = dbHelper.allPrimariesList();
         listOfSecondaries = dbHelper.allSecondariesList();
 
+        loadoutRatings = new ArrayList<>();
+
+        for (int i = 1; i <= listOfLoadouts.size(); i++){
+            Double d = 1.00;
+            d = (dbHelper.getLoadoutRatingFromId(i));
+            loadoutRatings.add(d);
+        }
+
+
         Log.d("Appricot", listOfPrimaries.get(5).getPrimaryName());
 
         fillListView();
@@ -61,7 +74,7 @@ public class viewLoadouts extends AppCompatActivity {
     }
 
    private void fillListView(){
-       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries, listOfLoadoutRatings);
+       adapter = new LoadoutListAdapter(this, listOfLoadouts, listOfPrimaries, listOfSecondaries, loadoutRatings);
        lv_j_listOfLoadouts.setAdapter(adapter);
    }
 

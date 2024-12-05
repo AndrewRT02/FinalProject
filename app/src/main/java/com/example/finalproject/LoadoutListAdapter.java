@@ -16,9 +16,9 @@ public class LoadoutListAdapter extends BaseAdapter {
     ArrayList<Loadout> listOfLoadouts;
     ArrayList<Primary> listOfPrimaries;
     ArrayList<Secondary> listOfSecondaries;
-    ArrayList<LoadoutRating> listOfLoadoutRatings;
+    ArrayList<Double> listOfLoadoutRatings;
 
-    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls, ArrayList<LoadoutRating> llr){
+    public LoadoutListAdapter(Context c, ArrayList<Loadout> ll, ArrayList<Primary> lp, ArrayList<Secondary> ls, ArrayList<Double> llr){
         context = c;
         listOfLoadouts = ll;
         listOfPrimaries = lp;
@@ -53,10 +53,12 @@ public class LoadoutListAdapter extends BaseAdapter {
         TextView primary = view.findViewById(R.id.tv_v_cc_primary);
         TextView secondary = view.findViewById(R.id.tv_v_cc_secondary);
         TextView fUpgrade = view.findViewById(R.id.tv_v_cc_fieldUpgrade);
+        TextView rating = view.findViewById(R.id.tv_v_cc_rating);
 
         Loadout loadout = listOfLoadouts.get(i);
         Primary primaries = listOfPrimaries.get(i);
         Secondary secondaries = listOfSecondaries.get(i);
+
 
         //Log.d("Blueberry", listOfLoadouts.get(i).loadoutName);
 
@@ -66,6 +68,7 @@ public class LoadoutListAdapter extends BaseAdapter {
         primary.setText(primaries.getPrimaryName());
         secondary.setText(secondaries.getSecondaryName());
         fUpgrade.setText(loadout.getFieldUpgrade());
+        rating.setText(listOfLoadoutRatings.get(i).toString());
 
         return view;
     }
