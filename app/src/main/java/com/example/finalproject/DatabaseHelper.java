@@ -211,8 +211,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-    private void initSecondaries(){
-        if (countRecordsFromTables(secondary_table_name) == 0){
+    private void initSecondaries() {
+        if (countRecordsFromTables(secondary_table_name) == 0) {
             SQLiteDatabase db = this.getWritableDatabase();
 
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('9MM PM', 1, 'Iron Sight', 'Suppresor', 'Long Barrel', 'Extended Magazine', 'Quickdraw Grip')");
@@ -227,8 +227,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GS45', 10, 'Kepler Microflex', 'Muzzle Brake', 'Reinforced Barrel', 'Stock Mag', 'Assault Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('STRYDER .22', 11, 'Accu-Spot Reflex', 'Compensator', 'Short Barrel', 'Extended Mag I', 'Quickdraw Grip')");
             db.execSQL("INSERT INTO " + secondary_table_name + " (secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip) VALUES ('GREKHOVA', 12, 'Otero Micro Dot', 'Suppressor', 'Long Barrel', 'Fast Mag I', 'Assault Grip')");
-
-
 
             db.close();
         }
@@ -443,6 +441,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + secondary_table_name, null);
 
         ArrayList<Secondary> secondaryArrayList = new ArrayList<>();
+
+        Log.d("SECONDARIES", String.valueOf(cursor.getCount()));
 
         if (cursor.moveToFirst()){
             do {
@@ -810,50 +810,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void searchLoadouts(String p, String s, String t, String l, String m, String fU, int sR, int eR){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        StringBuilder query;
-        query = new StringBuilder(" SELECT loadoutId FROM " + loadoutRating_table_name + " WHERE AVG(loadoutRating) BETWEEN '" + sR + "' AND '" + eR + "';");
-
+        String query;
+        query = "SELECT Loadout.* FROM " + loadout_table_name + " INNER JOIN ( SELECT loadoutRating.loadoutId, AVG(loadoutRating) AS average_rating FROM loadoutRating GROUP BY loadoutRating.loadoutId) ON loadoutId = loadoutRating.loadoutId WHERE average_rating BETWEEN '" + sR + "' AND '" + eR + "';";
+//
         Cursor cursor;
-
-        cursor = db.rawQuery(query.toString(), null);
-
-        ArrayList<Integer> listOfInts = new ArrayList<>();
-
-        if (cursor != null){
-            cursor.moveToFirst();
-
-            query = new StringBuilder(" SELECT * FROM " + loadout_table_name + " WHERE loadoutId IN ( ");
-
-            for (int i = 0; i < cursor.getCount(); i++){
-                query.append("i, ");
-            }
-            query.setCharAt(query.length()-2, ')');
-        }
-
-
-        query = new StringBuilder("SELECT * FROM + loadout" + getLoadoutDbName() + " WHERE ");
-
-        if (p != ""){
-            query.append(" primaryGun = '").append(getIdFromPrimaryName(p)).append("',");
-        }
-        if (s != ""){
-            query.append(" secondaryGun = '").append(getIdFromSecondaryName(s)).append("',");
-        }
-        if (t != ""){
-            query.append(" tactical = '").append(getIdFromTacticalName(t)).append("',");
-        }
-        if (l != ""){
-            query.append(" lethal = '").append(getIdFromLethalName(l)).append("',");
-        }
-        if (m != ""){
-            query.append(" melee = '").append(m).append("';");
-        }
-        if (fU != ""){
-            query.append(" fieldUpgrade = '").append(fU).append("',");
-        }
-        //if (sR && eR){
-        //    query.append(" ")
+//
+        cursor = db.rawQuery(query, null);
+//
+        //ArrayList<Integer> listOfInts = new ArrayList<>();
+//
+        //if (cursor != null){
+        //    cursor.moveToFirst();
+//
+        //    query = new StringBuilder(" SELECT * FROM " + loadout_table_name + " WHERE loadoutId IN ( ");
+//
+        //    for (int i = 0; i < cursor.getCount(); i++){
+        //        query.append("i, ");
+        //    }
+        //    query.setCharAt(query.length()-2, ')');
         //}
+//
+//
+        //query = new StringBuilder("SELECT * FROM + loadout" + getLoadoutDbName() + " WHERE ");
+//
+        //if (p != ""){
+        //    query.append(" primaryGun = '").append(getIdFromPrimaryName(p)).append("',");
+        //}
+        //if (s != ""){
+        //    query.append(" secondaryGun = '").append(getIdFromSecondaryName(s)).append("',");
+        //}
+        //if (t != ""){
+        //    query.append(" tactical = '").append(getIdFromTacticalName(t)).append("',");
+        //}
+        //if (l != ""){
+        //    query.append(" lethal = '").append(getIdFromLethalName(l)).append("',");
+        //}
+        //if (m != ""){
+        //    query.append(" melee = '").append(m).append("';");
+        //}
+        //if (fU != ""){
+        //    query.append(" fieldUpgrade = '").append(fU).append("',");
+        //}
+        ////if (sR && eR){
+        ////    query.append(" ")
+        ////}
     }
 
 }

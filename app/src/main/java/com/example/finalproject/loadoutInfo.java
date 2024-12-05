@@ -35,6 +35,7 @@ public class loadoutInfo extends AppCompatActivity {
     Intent intent_j_backToViewLoadouts;
     Intent intent_j_seePrimary;
     Intent intent_j_seeSecondary;
+    Intent intent_j_rateLoadout;
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
@@ -69,6 +70,7 @@ public class loadoutInfo extends AppCompatActivity {
         intent_j_backToViewLoadouts = new Intent(loadoutInfo.this, viewLoadouts.class);
         intent_j_seePrimary = new Intent(loadoutInfo.this, primaryInfo.class);
         intent_j_seeSecondary       = new Intent(loadoutInfo.this, secondaryInfo.class);
+        intent_j_rateLoadout = new Intent(loadoutInfo.this, rateLoadout.class);
 
         //When I go back to the Loadout Screen from Primary/Secondary it erases all of the info in Loadout Info
         //Find a way around this
@@ -114,6 +116,7 @@ public class loadoutInfo extends AppCompatActivity {
         backToViewLoadotsBtnListener();
         toPrimaryInfoBtnListener();
         toSecondaryInfoBtnListener();
+        toRateLoadoutBtnListener();
     }
 
     private void backToViewLoadotsBtnListener(){
@@ -139,6 +142,15 @@ public class loadoutInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_seeSecondary);
+            }
+        });
+    }
+
+    private void toRateLoadoutBtnListener(){
+        btn_j_rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_rateLoadout);
             }
         });
     }
