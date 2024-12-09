@@ -128,6 +128,7 @@ public class registerUser extends AppCompatActivity {
             tv_j_unameError.setVisibility(View.INVISIBLE);
         }
         //-----------------Need to add the error checking to make sure that the username isn't already being used
+                            //This error checking is in the register user function
 
         //FName Error Checking
         if (et_j_fname.getText().toString().isEmpty()){

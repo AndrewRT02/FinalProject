@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class makeSecondary extends AppCompatActivity {
+public class updateSecondary extends AppCompatActivity {
 
     TextView secondarySel;
     TextView opticSel;
@@ -68,14 +67,11 @@ public class makeSecondary extends AppCompatActivity {
     ArrayAdapter<String> mag_popup_adapter;
     ArrayAdapter<String> grip_popup_adapter;
 
-
     Button btn_j_back;
-    Button btn_j_next;
-    Button btn_j_home;
+    Button btn_j_update;
 
-    Intent intent_j_next;
     Intent intent_j_back;
-    Intent intent_j_home;
+    Intent intent_j_update;
 
     TextView tv_j_sError;
     TextView tv_j_oError;
@@ -90,28 +86,25 @@ public class makeSecondary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_make_secondary);
+        setContentView(R.layout.activity_update_secondary);
 
-        btn_j_back = findViewById(R.id.btn_v_makeS_back);
+        btn_j_back = findViewById(R.id.btn_v_updateS_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_next = findViewById(R.id.btn_v_makeS_next);
-        btn_j_next.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_home = findViewById(R.id.btn_v_makeS_home);
-        btn_j_home.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_j_update = findViewById(R.id.btn_v_updateS_update);
+        btn_j_update.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        intent_j_back = new Intent(makeSecondary.this, makePrimary.class);
-        intent_j_next = new Intent(makeSecondary.this, makePerks.class);
-        intent_j_home = new Intent(makeSecondary.this, welcomeScreen.class);
+        intent_j_back = new Intent(updateSecondary.this, viewYourLoadout.class);
+        intent_j_update = new Intent(updateSecondary.this, welcomeScreen.class);
 
-        tv_j_sError = findViewById(R.id.tv_v_makeS_secondaryError);
-        tv_j_oError = findViewById(R.id.tv_v_makeS_opticError);
-        tv_j_mError = findViewById(R.id.tv_v_makeS_muzzleError);
-        tv_j_bError = findViewById(R.id.tv_v_makeS_barrelError);
-        tv_j_magError = findViewById(R.id.tv_v_makeS_magError);
-        tv_j_gError = findViewById(R.id.tv_v_makeS_gripError);
+        tv_j_sError = findViewById(R.id.tv_v_updateS_secondaryError);
+        tv_j_oError = findViewById(R.id.tv_v_updateS_opticError);
+        tv_j_mError = findViewById(R.id.tv_v_updateS_muzzleError);
+        tv_j_bError = findViewById(R.id.tv_v_updateS_barrelError);
+        tv_j_magError = findViewById(R.id.tv_v_updateS_magError);
+        tv_j_gError = findViewById(R.id.tv_v_updateS_gripError);
 
 
-        secondarySel = findViewById(R.id.tv_makeS_secondary_selection);
+        secondarySel = findViewById(R.id.tv_updateS_secondary_selection);
         //-------------------------------Secondary------------------------------
         secondaries = new ArrayList<>();
 
@@ -122,7 +115,7 @@ public class makeSecondary extends AppCompatActivity {
         secondaries.add("STRYDER .22");
 
 
-        opticSel = findViewById(R.id.tv_makeS_optic_selection);
+        opticSel = findViewById(R.id.tv_updateS_optic_selection);
         //-------------------------------Optics------------------------------
         optics = new ArrayList<>();
 
@@ -135,7 +128,7 @@ public class makeSecondary extends AppCompatActivity {
         optics.add("Iron Sights");
 
 
-        muzzleSel = findViewById(R.id.tv_makeS_muzzle_selection);
+        muzzleSel = findViewById(R.id.tv_updateS_muzzle_selection);
         //--------------------------------Muzzles------------------------------
         muzzles = new ArrayList<>();
 
@@ -146,7 +139,7 @@ public class makeSecondary extends AppCompatActivity {
         muzzles.add("Ported Compensator");
 
 
-        barrelSel = findViewById(R.id.tv_makeS_barrel_selection);
+        barrelSel = findViewById(R.id.tv_updateS_barrel_selection);
         //--------------------------------Barrels------------------------------
         barrels = new ArrayList<>();
 
@@ -158,7 +151,7 @@ public class makeSecondary extends AppCompatActivity {
         barrels.add("Reinforced Barrel");
 
 
-        magSel = findViewById(R.id.tv_makeS_mag_selection);
+        magSel = findViewById(R.id.tv_updateS_mag_selection);
         //--------------------------------Magazines------------------------------
         mags = new ArrayList<>();
 
@@ -170,7 +163,7 @@ public class makeSecondary extends AppCompatActivity {
         mags.add("Stock Mag");
 
 
-        gripSel = findViewById(R.id.tv_makeS_grip_selection);
+        gripSel = findViewById(R.id.tv_updateS_grip_selection);
         //--------------------------------Grip------------------------------
         grips = new ArrayList<>();
 
@@ -181,6 +174,7 @@ public class makeSecondary extends AppCompatActivity {
         grips.add("CQB Grip");
         grips.add("Ergonomic Grip");
 
+
         secondarySelClickListenerTextView();
         opticSelClickListenerTextView();
         muzzleSelClickListenerTextView();
@@ -190,16 +184,90 @@ public class makeSecondary extends AppCompatActivity {
 
 
         backBtnListener();
-        homeBtnListener();
-        nextBtnListener();
+        updateBtnListener();
     }
+
+    private void backBtnListener(){
+        btn_j_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_back);
+            }
+        });
+    }
+
+    private void updateBtnListener(){
+        btn_j_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean bool;
+                bool = secondaryErroChecking();
+
+                //secondaryName, secondaryId, secondaryOptic, secondaryMuzzle, secondaryBarrel, secondaryMagazine, secondaryGrip
+                if (bool){
+                    db.updateSecondary(secondarySel.getText().toString(), opticSel.getText().toString(), muzzleSel.getText().toString(), barrelSel.getText().toString(), magSel.getText().toString(), gripSel.getText().toString(), SecondarySessionData.getRegisteredSecondary().getSecondaryId());
+
+                }
+            }
+        });
+    }
+
+    private boolean secondaryErroChecking(){
+        Boolean bool = true;
+
+        if (secondarySel.getText().toString().isEmpty()){
+            tv_j_sError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (secondarySel != null) {
+            tv_j_sError.setVisibility(View.INVISIBLE);
+        }
+
+        if (opticSel.getText().toString().isEmpty()){
+            tv_j_oError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (opticSel != null) {
+            tv_j_oError.setVisibility(View.INVISIBLE);
+        }
+
+        if (muzzleSel.getText().toString().isEmpty()){
+            tv_j_mError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (muzzleSel != null) {
+            tv_j_mError.setVisibility(View.INVISIBLE);
+        }
+
+        if (barrelSel.getText().toString().isEmpty()){
+            tv_j_bError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (barrelSel != null) {
+            tv_j_bError.setVisibility(View.INVISIBLE);
+        }
+
+        if (magSel.getText().toString().isEmpty()){
+            tv_j_magError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (magSel != null) {
+            tv_j_magError.setVisibility(View.INVISIBLE);
+        }
+
+        if (gripSel.getText().toString().isEmpty()){
+            tv_j_gError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (gripSel != null) {
+            tv_j_gError.setVisibility(View.INVISIBLE);
+        }
+
+        return bool;
+    }
+
+
 
     //=======================Secondaries==============================================
     private void secondarySelClickListenerTextView(){
         secondarySel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                secondaryPopUp = new Dialog(makeSecondary.this);
+                secondaryPopUp = new Dialog(updateSecondary.this);
                 secondaryPopUp.setContentView(R.layout.secondary_spinner_data);
 
                 secondaryPopUp.getWindow().setLayout(800, 1200);
@@ -212,7 +280,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_secondary_listview   = secondaryPopUp.findViewById(R.id.lv_secondaries);
 
                 //create an adapter for the listview
-                secondary_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, secondaries);
+                secondary_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, secondaries);
 
                 //set the adapter
                 dialog_secondary_listview.setAdapter(secondary_popup_adapter);
@@ -253,7 +321,7 @@ public class makeSecondary extends AppCompatActivity {
         opticSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opticPopUp = new Dialog(makeSecondary.this);
+                opticPopUp = new Dialog(updateSecondary.this);
                 opticPopUp.setContentView(R.layout.soptic_spinner_data);
                 opticPopUp.getWindow().setLayout(800, 1200);
                 opticPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -264,7 +332,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_optic_listview = opticPopUp.findViewById(R.id.lv_optics);
 
                 //create an adapter for the listview
-                optic_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, optics);
+                optic_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, optics);
 
                 //set the adapter
                 dialog_optic_listview.setAdapter(optic_popup_adapter);
@@ -311,7 +379,7 @@ public class makeSecondary extends AppCompatActivity {
         muzzleSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                muzzlePopUp = new Dialog(makeSecondary.this);
+                muzzlePopUp = new Dialog(updateSecondary.this);
                 muzzlePopUp.setContentView(R.layout.smuzzle_spinner_data);
                 muzzlePopUp.getWindow().setLayout(800, 1200);
                 muzzlePopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -322,7 +390,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_muzzle_listview = muzzlePopUp.findViewById(R.id.lv_muzzles);
 
                 //create an adapter for the listview
-                muzzle_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, muzzles);
+                muzzle_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, muzzles);
 
                 //set the adapter
                 dialog_muzzle_listview.setAdapter(muzzle_popup_adapter);
@@ -369,7 +437,7 @@ public class makeSecondary extends AppCompatActivity {
         barrelSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barrelPopUp = new Dialog(makeSecondary.this);
+                barrelPopUp = new Dialog(updateSecondary.this);
                 barrelPopUp.setContentView(R.layout.sbarrel_spinner_data);
                 barrelPopUp.getWindow().setLayout(800, 1200);
                 barrelPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -380,7 +448,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_barrel_listview = barrelPopUp.findViewById(R.id.lv_barrels);
 
                 //create an adapter for the listview
-                barrel_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, barrels);
+                barrel_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, barrels);
 
                 //set the adapter
                 dialog_barrel_listview.setAdapter(barrel_popup_adapter);
@@ -427,7 +495,7 @@ public class makeSecondary extends AppCompatActivity {
         magSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                magPopUp = new Dialog(makeSecondary.this);
+                magPopUp = new Dialog(updateSecondary.this);
                 magPopUp.setContentView(R.layout.smag_spinner_data);
                 magPopUp.getWindow().setLayout(800, 1200);
                 magPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -438,7 +506,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_mag_listview = magPopUp.findViewById(R.id.lv_mags);
 
                 //create an adapter for the listview
-                mag_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, mags);
+                mag_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, mags);
 
                 //set the adapter
                 dialog_mag_listview.setAdapter(mag_popup_adapter);
@@ -485,7 +553,7 @@ public class makeSecondary extends AppCompatActivity {
         gripSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gripPopUp = new Dialog(makeSecondary.this);
+                gripPopUp = new Dialog(updateSecondary.this);
                 gripPopUp.setContentView(R.layout.sgrip_spinner_data);
                 gripPopUp.getWindow().setLayout(800, 1200);
                 gripPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -496,7 +564,7 @@ public class makeSecondary extends AppCompatActivity {
                 dialog_grip_listview = gripPopUp.findViewById(R.id.lv_grips);
 
                 //create an adapter for the listview
-                grip_popup_adapter = new ArrayAdapter<>(makeSecondary.this, android.R.layout.simple_list_item_1, grips);
+                grip_popup_adapter = new ArrayAdapter<>(updateSecondary.this, android.R.layout.simple_list_item_1, grips);
 
                 //set the adapter
                 dialog_grip_listview.setAdapter(grip_popup_adapter);
@@ -536,106 +604,5 @@ public class makeSecondary extends AppCompatActivity {
                 });
             }
         });
-    }
-
-
-
-    private void backBtnListener(){
-        btn_j_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent_j_back);
-            }
-        });
-    }
-
-    private void homeBtnListener(){
-        btn_j_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent_j_home);
-            }
-        });
-    }
-
-    private void nextBtnListener(){
-        btn_j_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //make sure to add error checking
-                Boolean bool;
-                bool = secondaryErrorField();
-
-                Log.d("Apple", MakePrimarySessionData.getPrimaryParts().getUserPrimaryName());
-
-                int i = db.getLastMadeSecondaryId();
-                Log.d("Apple", String.valueOf(i));
-
-                if (bool){
-
-                    db.setUserSecondaryInfo(secondarySel.getText().toString(), opticSel.getText().toString(), muzzleSel.getText().toString(), barrelSel.getText().toString(), magSel.getText().toString(), gripSel.getText().toString());
-
-                    startActivity(intent_j_next);
-                }
-
-            }
-        });
-    }
-
-
-    //Make an error checking field
-    private boolean secondaryErrorField(){
-        Boolean bool = true;
-
-        //Primary Error Checking
-        if(secondarySel.getText().toString().isEmpty()){
-            tv_j_sError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (secondarySel != null) {
-            tv_j_sError.setVisibility(View.INVISIBLE);
-        }
-
-        //Optic Error Checking
-        if (opticSel.getText().toString().isEmpty()){
-            tv_j_oError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (opticSel != null) {
-            tv_j_oError.setVisibility(View.INVISIBLE);
-        }
-
-        //Muzzle Error Checking
-        if (muzzleSel.getText().toString().isEmpty()){
-            tv_j_mError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (muzzleSel != null) {
-            tv_j_mError.setVisibility(View.INVISIBLE);
-        }
-
-        //Barrel Error Checking
-        if (barrelSel.getText().toString().isEmpty()){
-            tv_j_bError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (barrelSel != null) {
-            tv_j_bError.setVisibility(View.INVISIBLE);
-        }
-
-        //Underbarrel Error Checking
-        if (magSel.getText().toString().isEmpty()){
-            tv_j_magError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (magSel != null) {
-            tv_j_magError.setVisibility(View.INVISIBLE);
-        }
-
-        //Stock Error Checking
-        if (gripSel.getText().toString().isEmpty()){
-            tv_j_gError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (gripSel != null) {
-            tv_j_gError.setVisibility(View.INVISIBLE);
-        }
-
-        return bool;
-
     }
 }

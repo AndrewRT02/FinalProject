@@ -99,11 +99,29 @@ public class loadoutInfo extends AppCompatActivity {
             //dbHelper.getAllSecondaryInfoGivenID(lId);
             tv_j_secondary.setText(SecondarySessionData.getRegisteredSecondary().getSecondaryName());
 
+
+
+            int tacticalId = dbHelper.getTacticalInforGivenCreatorAndLoadoutName(tv_j_creator.getText().toString(), tv_j_lName.getText().toString());
+
+            Log.d("Banana", String.valueOf(tacticalId));
+
+            int lethalId = dbHelper.getLethalInforGivenCreatorAndLoadoutName(tv_j_creator.getText().toString(), tv_j_lName.getText().toString());
+
+            Log.d("LethalId", String.valueOf(lethalId));
+
+            String tacticalName = dbHelper.getTacticalNameFromTacticalId(tacticalId);
+
+            String lethalName = dbHelper.getLethalNameFromLethalId(lethalId);
+
+
+
             //dbHelper.getAllTacticalInfoGivenID(lId);
-            tv_j_tactical.setText(TacticalSessionData.getRegisteredTactical().getTacticalName());
+            tv_j_tactical.setText(tacticalName);
 
             //dbHelper.getAllLethalInfoGivenID(lId);
-            tv_j_lethal.setText(LethalSessionData.getRegisteredLethal().getLethalName());
+            tv_j_lethal.setText(lethalName);
+
+
 
             //dbHelper.getAllPerksInfoGivenID(lId);
             tv_j_p1.setText(PerksSessionData.getRegisteredPerks().getPerk1());

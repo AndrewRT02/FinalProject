@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class makePrimary extends AppCompatActivity {
+public class updatePrimary extends AppCompatActivity {
 
     TextView primarySel;
     TextView opticSel;
@@ -68,12 +67,11 @@ public class makePrimary extends AppCompatActivity {
     ArrayAdapter<String> ubarrel_popup_adapter;
     ArrayAdapter<String> stock_popup_adapter;
 
-
     Button btn_j_back;
-    Button btn_j_next;
+    Button btn_j_update;
 
-    Intent intent_j_next;
     Intent intent_j_back;
+    Intent intent_j_update;
 
     TextView tv_j_pError;
     TextView tv_j_oError;
@@ -84,29 +82,29 @@ public class makePrimary extends AppCompatActivity {
 
     DatabaseHelper db = new DatabaseHelper(this);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_make_primary);
+        setContentView(R.layout.activity_update_primary);
 
-        btn_j_back  = findViewById(R.id.btn_v_makeP_back);
+        btn_j_back = findViewById(R.id.btn_v_updateP_back);
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_next  = findViewById(R.id.btn_v_makeP_next);
-        btn_j_next.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_j_update = findViewById(R.id.btn_v_updateP_update);
+        btn_j_update.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        intent_j_back = new Intent(makePrimary.this, welcomeScreen.class);
-        intent_j_next = new Intent(makePrimary.this, makeSecondary.class);
+        intent_j_back = new Intent(updatePrimary.this, viewYourLoadout.class);
+        intent_j_update = new Intent(updatePrimary.this, welcomeScreen.class);
 
-        tv_j_pError = findViewById(R.id.tv_v_makeP_primaryError);
-        tv_j_oError = findViewById(R.id.tv_v_makeP_opticError);
-        tv_j_mError = findViewById(R.id.tv_v_makeP_muzzleError);
-        tv_j_bError = findViewById(R.id.tv_v_makeP_barrelError);
-        tv_j_uBError = findViewById(R.id.tv_v_makeP_uBarrelError);
-        tv_j_sError = findViewById(R.id.tv_v_makeP_errorStock);
+        tv_j_pError = findViewById(R.id.tv_v_updateP_primaryError);
+        tv_j_oError = findViewById(R.id.tv_v_updateP_opticError);
+        tv_j_mError = findViewById(R.id.tv_v_updateP_muzzleError);
+        tv_j_bError = findViewById(R.id.tv_v_updateP_barrelError);
+        tv_j_uBError = findViewById(R.id.tv_v_updateP_uBarrelError);
+        tv_j_sError = findViewById(R.id.tv_v_updateP_errorStock);
 
-
-        primarySel = findViewById(R.id.tv_makeP_primary_selection);
+        primarySel = findViewById(R.id.tv_updateP_primary_selection);
         //--------------------------------Primary------------------------------
         primaries = new ArrayList<>();
 
@@ -146,7 +144,7 @@ public class makePrimary extends AppCompatActivity {
         primaries.add("LR 7.62");
 
 
-        opticSel = findViewById(R.id.tv_makeP_optic_selection);
+        opticSel = findViewById(R.id.tv_updateP_optic_selection);
         //--------------------------------Optics------------------------------
         optics = new ArrayList<>();
 
@@ -163,7 +161,7 @@ public class makePrimary extends AppCompatActivity {
         optics.add("Iron Sights");
 
 
-        muzzleSel = findViewById(R.id.tv_makeP_muzzle_selection);
+        muzzleSel = findViewById(R.id.tv_updateP_muzzle_selection);
         //--------------------------------Muzzles------------------------------
         muzzles = new ArrayList<>();
 
@@ -174,7 +172,7 @@ public class makePrimary extends AppCompatActivity {
         muzzles.add("Ported Compensator");
 
 
-        barrelSel = findViewById(R.id.tv_makeP_barrel_selection);
+        barrelSel = findViewById(R.id.tv_updateP_barrel_selection);
         //--------------------------------Barrels------------------------------
         barrels = new ArrayList<>();
 
@@ -186,7 +184,7 @@ public class makePrimary extends AppCompatActivity {
         barrels.add("Reinforced Barrel");
 
 
-        uBarrelSel = findViewById(R.id.tv_makeP_uBarrel_selection);
+        uBarrelSel = findViewById(R.id.tv_updateP_uBarrel_selection);
         //-----------------------------UnderBarrels---------------------------
         uBarrels = new ArrayList<>();
 
@@ -198,7 +196,7 @@ public class makePrimary extends AppCompatActivity {
         uBarrels.add("Marksman Foregrip");
 
 
-        stockSel = findViewById(R.id.tv_makeP_stock_selection);
+        stockSel = findViewById(R.id.tv_updateP_stock_selection);
         //--------------------------------Stock-------------------------------
         stocks = new ArrayList<>();
 
@@ -210,6 +208,8 @@ public class makePrimary extends AppCompatActivity {
         stocks.add("Buffer Weight Stock");
         stocks.add("No Stock");
 
+
+
         primarySelClickListenerTextView();
         opticSelClickListenerTextView();
         muzzleSelClickListenerTextView();
@@ -218,16 +218,89 @@ public class makePrimary extends AppCompatActivity {
         stockSelClickListenerTextView();
 
         backBtnListener();
-        nextBtnListener();
+        updateBtnListener();
+
     }
 
+    private void backBtnListener(){
+        btn_j_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_back);
+            }
+        });
+    }
+
+    private void updateBtnListener(){
+        btn_j_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean bool;
+                bool = uPrimaryErroChecking();
+
+                if (bool){
+                    db.updatePrimary(primarySel.getText().toString(), opticSel.getText().toString(), muzzleSel.getText().toString(), barrelSel.getText().toString(), uBarrelSel.getText().toString(), stockSel.getText().toString(), PrimarySessionData.getRegisteredPrimary().getPrimaryId());
+                    startActivity(intent_j_update);
+                }
+
+            }
+        });
+    }
+
+    private boolean uPrimaryErroChecking(){
+        Boolean bool = true;
+
+        if (primarySel.getText().toString().isEmpty()){
+            tv_j_pError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (primarySel != null) {
+            tv_j_pError.setVisibility(View.INVISIBLE);
+        }
+
+        if (opticSel.getText().toString().isEmpty()){
+            tv_j_oError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (opticSel != null) {
+            tv_j_oError.setVisibility(View.INVISIBLE);
+        }
+
+        if (muzzleSel.getText().toString().isEmpty()){
+            tv_j_mError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (muzzleSel != null) {
+            tv_j_mError.setVisibility(View.INVISIBLE);
+        }
+
+        if (barrelSel.getText().toString().isEmpty()){
+            tv_j_bError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (barrelSel != null) {
+            tv_j_bError.setVisibility(View.INVISIBLE);
+        }
+
+        if (uBarrelSel.getText().toString().isEmpty()){
+            tv_j_uBError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (uBarrelSel != null) {
+            tv_j_uBError.setVisibility(View.INVISIBLE);
+        }
+
+        if (stockSel.getText().toString().isEmpty()){
+            tv_j_sError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (stockSel != null) {
+            tv_j_sError.setVisibility(View.INVISIBLE);
+        }
+
+        return bool;
+    }
 
     //=======================Primaries=============================================
     private void primarySelClickListenerTextView(){
         primarySel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                primaryPopUp = new Dialog(makePrimary.this);
+                primaryPopUp = new Dialog(updatePrimary.this);
 
                 primaryPopUp.setContentView(R.layout.primary_spinner_data);
 
@@ -242,7 +315,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_primary_listview = primaryPopUp.findViewById(R.id.lv_primaries);
 
                 //create an adapter for the listview
-                primary_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, primaries);
+                primary_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, primaries);
 
                 //set the adapter
                 dialog_primary_listview.setAdapter(primary_popup_adapter);
@@ -289,7 +362,7 @@ public class makePrimary extends AppCompatActivity {
         opticSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opticPopUp = new Dialog(makePrimary.this);
+                opticPopUp = new Dialog(updatePrimary.this);
                 opticPopUp.setContentView(R.layout.poptic_spinner_data);
                 opticPopUp.getWindow().setLayout(800, 1200);
                 opticPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -300,7 +373,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_optic_listview = opticPopUp.findViewById(R.id.lv_optics);
 
                 //create an adapter for the listview
-                optic_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, optics);
+                optic_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, optics);
 
                 //set the adapter
                 dialog_optic_listview.setAdapter(optic_popup_adapter);
@@ -347,7 +420,7 @@ public class makePrimary extends AppCompatActivity {
         muzzleSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                muzzlePopUp = new Dialog(makePrimary.this);
+                muzzlePopUp = new Dialog(updatePrimary.this);
                 muzzlePopUp.setContentView(R.layout.pmuzzle_spinner_data);
                 muzzlePopUp.getWindow().setLayout(800, 1200);
                 muzzlePopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -358,7 +431,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_muzzle_listview = muzzlePopUp.findViewById(R.id.lv_muzzles);
 
                 //create an adapter for the listview
-                muzzle_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, muzzles);
+                muzzle_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, muzzles);
 
                 //set the adapter
                 dialog_muzzle_listview.setAdapter(muzzle_popup_adapter);
@@ -405,7 +478,7 @@ public class makePrimary extends AppCompatActivity {
         barrelSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                barrelPopUp = new Dialog(makePrimary.this);
+                barrelPopUp = new Dialog(updatePrimary.this);
                 barrelPopUp.setContentView(R.layout.pbarrel_spinner_data);
                 barrelPopUp.getWindow().setLayout(800, 1200);
                 barrelPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -416,7 +489,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_barrel_listview = barrelPopUp.findViewById(R.id.lv_barrels);
 
                 //create an adapter for the listview
-                barrel_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, barrels);
+                barrel_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, barrels);
 
                 //set the adapter
                 dialog_barrel_listview.setAdapter(barrel_popup_adapter);
@@ -463,7 +536,7 @@ public class makePrimary extends AppCompatActivity {
         uBarrelSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uBarrelPopUp = new Dialog(makePrimary.this);
+                uBarrelPopUp = new Dialog(updatePrimary.this);
                 uBarrelPopUp.setContentView(R.layout.pubarrel_spinner_data);
                 uBarrelPopUp.getWindow().setLayout(800, 1200);
                 uBarrelPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -474,7 +547,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_ubarrel_listview = uBarrelPopUp.findViewById(R.id.lv_ubarrels);
 
                 //create an adapter for the listview
-                ubarrel_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, uBarrels);
+                ubarrel_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, uBarrels);
 
                 //set the adapter
                 dialog_ubarrel_listview.setAdapter(ubarrel_popup_adapter);
@@ -521,7 +594,7 @@ public class makePrimary extends AppCompatActivity {
         stockSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stockPopUp = new Dialog(makePrimary.this);
+                stockPopUp = new Dialog(updatePrimary.this);
                 stockPopUp.setContentView(R.layout.pstock_spinner_data);
                 stockPopUp.getWindow().setLayout(800, 1200);
                 stockPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(250, 103, 0)));
@@ -532,7 +605,7 @@ public class makePrimary extends AppCompatActivity {
                 dialog_stock_listview = stockPopUp.findViewById(R.id.lv_stocks);
 
                 //create an adapter for the listview
-                stock_popup_adapter = new ArrayAdapter<>(makePrimary.this, android.R.layout.simple_list_item_1, stocks);
+                stock_popup_adapter = new ArrayAdapter<>(updatePrimary.this, android.R.layout.simple_list_item_1, stocks);
 
                 //set the adapter
                 dialog_stock_listview.setAdapter(stock_popup_adapter);
@@ -574,93 +647,4 @@ public class makePrimary extends AppCompatActivity {
         });
     }
 
-
-    private void backBtnListener(){
-        btn_j_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent_j_back);
-            }
-        });
-    }
-
-    private void nextBtnListener(){
-        btn_j_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //error check and make sure that all fields have been filled in
-
-                Boolean bool;
-                bool = primaryErrorField();
-
-                int i = db.getLastMadePrimaryId();
-                Log.d("Apple", String.valueOf(i));
-
-                if (bool){
-
-                    db.setUserPrimaryInfo(primarySel.getText().toString(), opticSel.getText().toString(), muzzleSel.getText().toString(), barrelSel.getText().toString(), uBarrelSel.getText().toString(), stockSel.getText().toString());
-
-                    startActivity(intent_j_next);
-                }
-
-            }
-        });
-    }
-
-    private boolean primaryErrorField(){
-        Boolean bool = true;
-
-        //Primary Error Checking
-        if(primarySel.getText().toString().isEmpty()){
-            tv_j_pError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (primarySel != null) {
-            tv_j_pError.setVisibility(View.INVISIBLE);
-        }
-
-        //Optic Error Checking
-        if (opticSel.getText().toString().isEmpty()){
-            tv_j_oError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (opticSel != null) {
-            tv_j_oError.setVisibility(View.INVISIBLE);
-        }
-
-        //Muzzle Error Checking
-        if (muzzleSel.getText().toString().isEmpty()){
-            tv_j_mError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (muzzleSel != null) {
-            tv_j_mError.setVisibility(View.INVISIBLE);
-        }
-
-        //Barrel Error Checking
-        if (barrelSel.getText().toString().isEmpty()){
-            tv_j_bError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (barrelSel != null) {
-            tv_j_bError.setVisibility(View.INVISIBLE);
-        }
-
-        //Underbarrel Error Checking
-        if (uBarrelSel.getText().toString().isEmpty()){
-            tv_j_uBError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (uBarrelSel != null) {
-            tv_j_uBError.setVisibility(View.INVISIBLE);
-        }
-
-        //Stock Error Checking
-        if (stockSel.getText().toString().isEmpty()){
-            tv_j_sError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (stockSel != null) {
-            tv_j_sError.setVisibility(View.INVISIBLE);
-        }
-
-        return bool;
-
-    }
-
 }
-

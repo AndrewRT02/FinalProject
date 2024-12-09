@@ -116,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="13dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Login"
+        android:text="Rate"
         app:cornerRadius="0sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_rate_back"
         app:layout_constraintStart_toStartOf="@+id/btn_v_rate_back" />
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="102dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Login"
+        android:text="Back"
         app:cornerRadius="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

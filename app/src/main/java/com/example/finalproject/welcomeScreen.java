@@ -72,7 +72,9 @@ public class welcomeScreen extends AppCompatActivity {
 
         dbHelper.initAllTables();
 
-        Log.d("AppleJack", dbHelper.getPrimaryNameFromId(1));
+        Log.d("Cranberry", dbHelper.getPrimaryNameFromId(1));
+
+        //Log.d("SessionName", SessionData.getRegisteredUser().getUname());
 
 
         searchLoadoutBtnListener();

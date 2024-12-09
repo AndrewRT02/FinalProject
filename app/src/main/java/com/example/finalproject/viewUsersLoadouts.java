@@ -84,8 +84,8 @@ public class viewUsersLoadouts extends AppCompatActivity {
                 dbHelper.getAllLoadoutInfoGivenLoadoutId(lId);
                 dbHelper.getAllPrimaryInfoGivenId(lId);
                 dbHelper.getAllSecondaryInfoGivenID(lId);
-                dbHelper.getAllTacticalInfoGivenID(lId);
-                dbHelper.getAllLethalInfoGivenID(lId);
+                //dbHelper.getAllTacticalInfoGivenID(lId);
+                //dbHelper.getAllLethalInfoGivenID(lId);
                 dbHelper.getAllPerksInfoGivenID(lId);
 
                 Log.d("Pumpkin", PrimarySessionData.getRegisteredPrimary().getPrimaryName());

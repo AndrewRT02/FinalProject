@@ -5,6 +5,252 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
     tools:context=".makeLoadout">
 
+    <TextView
+        android:id="@+id/tv_v_makeL_fUError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_fU_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeL_mError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_melee_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeL_lError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_lethal_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeL_tError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_tactical_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeL_lNameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="138dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_makeL_lName"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_v_makeL_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_makeL_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Create"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_makeL_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Home"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_makeL_create"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_makeL_back" />
+
+    <TextView
+        android:id="@+id/tv_makeL_fU_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Field Upgrade"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+
+    <TextView
+        android:id="@+id/textView76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field Upgrade:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_melee_selection" />
+
+    <TextView
+        android:id="@+id/tv_makeL_melee_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Melee"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+
+    <TextView
+        android:id="@+id/textView74"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Melee:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_lethal_selection" />
+
+    <EditText
+        android:id="@+id/et_v_makeL_lName"
+        android:layout_width="225dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:fontFamily="@font/allerta_stencil"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sInfo_sName2" />
+
+    <TextView
+        android:id="@+id/tv_makeL_lethal_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Lethal"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Lethal:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeL_tactical_selection" />
+
+    <TextView
+        android:id="@+id/tv_makeL_tactical_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Tactical"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+    <TextView
+        android:id="@+id/textView72"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="33dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Tactical:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_makeL_lName" />
+
+    <TextView
+        android:id="@+id/tv_v_sInfo_sName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Loadout Name:"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+    <TextView
+        android:id="@+id/textView71"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Make the rest your Loadout"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

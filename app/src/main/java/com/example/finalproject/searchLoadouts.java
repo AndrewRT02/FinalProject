@@ -7,12 +7,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +32,16 @@ public class searchLoadouts extends AppCompatActivity {
     TextView fieldUpgradeSel;
     TextView startRatingSel;
     TextView endRatingSel;
+    TextView tv_j_error;
+
+    TextView tv_j_pLabel;
+    TextView tv_j_sLabel;
+    TextView tv_j_tLabel;
+    TextView tv_j_lLabel;
+    TextView tv_j_mLabel;
+    TextView tv_j_fULabel;
+    TextView tv_j_rLabel;
+    TextView tv_j_to;
 
     ArrayList<String> primaries;
     ArrayList<String> secondaries;
@@ -76,13 +88,24 @@ public class searchLoadouts extends AppCompatActivity {
     ArrayAdapter<String> start_rating_popup_adapter;
     ArrayAdapter<String> end_rating_popup_adapter;
 
+    Spinner sp_j_searchOptions;
+    String[] options = {"Primary", "Secondary", "Tactical", "Lethal", "Melee", "Field Upgrade", "Rating"};
+
     Button btn_j_back;
     Button btn_j_search;
 
     Intent intent_j_welcome;
     Intent intent_j_searchResults;
 
+    ListView lv_j_searchedLoadouts;
+
+    static ArrayList<Loadout> searchedLoadoutsArray;
+
     DatabaseHelper db = new DatabaseHelper(this);
+
+    int searchBy;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +118,26 @@ public class searchLoadouts extends AppCompatActivity {
         btn_j_search = findViewById(R.id.btn_v_search_search);
         btn_j_search.setBackgroundColor(Color.rgb(250, 103, 0));
 
+        tv_j_pLabel = findViewById(R.id.tv_v_pLabel);
+        tv_j_sLabel = findViewById(R.id.tv_v_sLabel);
+        tv_j_tLabel = findViewById(R.id.tv_v_tLabel);
+        tv_j_lLabel = findViewById(R.id.tv_v_lLabel);
+        tv_j_mLabel = findViewById(R.id.tv_v_mLabel);
+        tv_j_fULabel = findViewById(R.id.tv_v_fULabel);
+        tv_j_rLabel = findViewById(R.id.tv_v_rLabel);
+        tv_j_to = findViewById(R.id.tv_v_to);
+        tv_j_error = findViewById(R.id.tv_v_error);
+
         intent_j_welcome    = new Intent(searchLoadouts.this, welcomeScreen.class);
+
+        lv_j_searchedLoadouts = findViewById(R.id.lv_v_searchedLoadouts);
+
+        sp_j_searchOptions = findViewById(R.id.sp_v_searchOptions);
+
+        ArrayAdapter<String> SpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, options);
+        SpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_j_searchOptions.setAdapter(SpinnerAdapter);
+
 
         primarySel = findViewById(R.id.tv_search_primary_selection);
 
@@ -250,7 +292,8 @@ public class searchLoadouts extends AppCompatActivity {
         endRatingSelClickListenerTextView();
 
 
-
+        itemSpinnerSelectedListener();
+        searchLoadoutsBtnListener();
         backBtnListener();
     }
 
@@ -659,6 +702,234 @@ public class searchLoadouts extends AppCompatActivity {
     }
 
 
+    private void itemSpinnerSelectedListener(){
+        sp_j_searchOptions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String selectedChoice = sp_j_searchOptions.getSelectedItem().toString();
+
+                if (selectedChoice.equals("Primary")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.VISIBLE);
+                    primarySel.setVisibility(View.VISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 1;
+                }
+                if (selectedChoice.equals("Secondary")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.VISIBLE);
+                    secondarySel.setVisibility(View.VISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 2;
+                }
+                if (selectedChoice.equals("Tactical")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.VISIBLE);
+                    tacticalSel.setVisibility(View.VISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 3;
+                }
+                if (selectedChoice.equals("Lethal")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.VISIBLE);
+                    lethalSel.setVisibility(View.VISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 4;
+                }
+                if (selectedChoice.equals("Melee")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.VISIBLE);
+                    meleeSel.setVisibility(View.VISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 5;
+                }
+                if (selectedChoice.equals("Field Upgrade")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.VISIBLE);
+                    fieldUpgradeSel.setVisibility(View.VISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.INVISIBLE);
+                    startRatingSel.setVisibility(View.INVISIBLE);
+                    tv_j_to.setVisibility(View.INVISIBLE);
+                    endRatingSel.setVisibility(View.INVISIBLE);
+
+                    searchBy = 6;
+                }
+                if (selectedChoice.equals("Rating")){
+                    Log.d("Banana", selectedChoice);
+
+                    lv_j_searchedLoadouts.setVisibility(View.INVISIBLE);
+
+                    tv_j_pLabel.setVisibility(View.INVISIBLE);
+                    primarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_sLabel.setVisibility(View.INVISIBLE);
+                    secondarySel.setVisibility(View.INVISIBLE);
+
+                    tv_j_tLabel.setVisibility(View.INVISIBLE);
+                    tacticalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_lLabel.setVisibility(View.INVISIBLE);
+                    lethalSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_mLabel.setVisibility(View.INVISIBLE);
+                    meleeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_fULabel.setVisibility(View.INVISIBLE);
+                    fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                    tv_j_rLabel.setVisibility(View.VISIBLE);
+                    startRatingSel.setVisibility(View.VISIBLE);
+                    tv_j_to.setVisibility(View.VISIBLE);
+                    endRatingSel.setVisibility(View.VISIBLE);
+
+                    searchBy = 7;
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
     private void backBtnListener(){
         btn_j_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -674,11 +945,77 @@ public class searchLoadouts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                lv_j_searchedLoadouts.setVisibility(View.VISIBLE);
+
+                tv_j_pLabel.setVisibility(View.INVISIBLE);
+                primarySel.setVisibility(View.INVISIBLE);
+
+                tv_j_sLabel.setVisibility(View.INVISIBLE);
+                secondarySel.setVisibility(View.INVISIBLE);
+
+                tv_j_tLabel.setVisibility(View.INVISIBLE);
+                tacticalSel.setVisibility(View.INVISIBLE);
+
+                tv_j_lLabel.setVisibility(View.INVISIBLE);
+                lethalSel.setVisibility(View.INVISIBLE);
+
+                tv_j_mLabel.setVisibility(View.INVISIBLE);
+                meleeSel.setVisibility(View.INVISIBLE);
+
+                tv_j_fULabel.setVisibility(View.INVISIBLE);
+                fieldUpgradeSel.setVisibility(View.INVISIBLE);
+
+                tv_j_rLabel.setVisibility(View.INVISIBLE);
+                startRatingSel.setVisibility(View.INVISIBLE);
+                tv_j_to.setVisibility(View.INVISIBLE);
+                endRatingSel.setVisibility(View.INVISIBLE);
+
+
+                if (searchBy == 1){
+                    //Get Primary Name
+                    //Get Primary Id
+                }
+                if (searchBy == 2){
+
+                }
+                if (searchBy == 3){
+
+                }
+                if (searchBy == 4){
+
+                }
+                if (searchBy == 5){
+
+                }
+                if (searchBy == 6){
+
+                }
+                if (searchBy == 7){
+
+                    if (startRatingSel != null && endRatingSel != null){
+                        tv_j_error.setVisibility(View.INVISIBLE);
+
+                        ArrayList<Integer> loadoutIds = new ArrayList<>();
+                        loadoutIds = db.getLoadoutIDsFromStartandEndIngRatings(Integer.parseInt(startRatingSel.getText().toString()), Integer.parseInt(endRatingSel.getText().toString()));
+
+                        for (int i = 0; i < loadoutIds.size(); i++){
+                            db.getAllLoadoutInfoGivenLoadoutId(loadoutIds.get(i));
+
+                            searchedLoadoutsArray.add(LoadoutSessionData.getRegisteredLoadout());
+                        }
+                    }
+                    else {
+                        tv_j_error.setVisibility(View.VISIBLE);
+                    }
+
+                }
             }
         });
     }
 
+    private void fillListView(){
 
+    }
 
 
 }

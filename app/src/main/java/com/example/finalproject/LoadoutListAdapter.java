@@ -68,7 +68,17 @@ public class LoadoutListAdapter extends BaseAdapter {
         primary.setText(primaries.getPrimaryName());
         secondary.setText(secondaries.getSecondaryName());
         fUpgrade.setText(loadout.getFieldUpgrade());
-        rating.setText(listOfLoadoutRatings.get(i).toString());
+
+        if (rating != null){
+
+            String rting = String.format("%.1f", listOfLoadoutRatings.get(i));
+
+            rating.setText(rting);
+        }
+        else{
+
+        }
+
 
         return view;
     }

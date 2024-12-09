@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bo6background2"
+    tools:context=".updatePrimary">
+
+    <Button
+        android:id="@+id/btn_v_updateP_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="49dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Back"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_updateP_update"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_v_updateP_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="49dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Update"
+        android:textSize="18sp"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_barrelError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_barrel_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_lLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="38dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Barrel:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_muzzle_selection" />
+
+    <TextView
+        android:id="@+id/tv_updateP_barrel_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Barrel"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_lLabel2" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_muzzleError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_muzzle_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_tLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Muzzle:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_optic_selection" />
+
+    <TextView
+        android:id="@+id/tv_updateP_muzzle_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Muzzle"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_tLabel2" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_uBarrelError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_uBarrel_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_mLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Underbarrel:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_barrel_selection" />
+
+    <TextView
+        android:id="@+id/tv_updateP_uBarrel_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Underbarrel"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_mLabel2" />
+
+    <TextView
+        android:id="@+id/tv_updateP_primary_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Primary"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_pLabel2" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_primaryError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_primary_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_pLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="34dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Primary:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_errorStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_stock_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_fULabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Stock:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_uBarrel_selection" />
+
+    <TextView
+        android:id="@+id/tv_updateP_stock_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Stock"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_fULabel2" />
+
+    <TextView
+        android:id="@+id/tv_updateP_optic_selection"
+        android:layout_width="331dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@android:drawable/editbox_background"
+        android:fontFamily="@font/allerta_stencil"
+        android:hint="Select Optic"
+        app:drawableEndCompat="@android:drawable/arrow_down_float"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sLabel2" />
+
+    <TextView
+        android:id="@+id/tv_v_updateP_opticError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_optic_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_sLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="19dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Optic:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_updateP_primary_selection" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

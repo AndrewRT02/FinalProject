@@ -8,11 +8,103 @@
     android:background="@drawable/bo6background2"
     tools:context=".searchLoadouts">
 
+    <TextView
+        android:id="@+id/tv_v_makeS_gripError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_grip_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeS_magError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_mag_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeS_barrelError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_barrel_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeS_muzzleError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_muzzle_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeS_opticError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_optic_selection"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_v_makeS_secondaryError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Field is Empty!"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_secondary_selection"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_v_makeS_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="62dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Home"
+        app:cornerRadius="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_makeS_next"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_makeS_back" />
+
     <Button
         android:id="@+id/btn_v_makeS_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="33dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="62dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Next"
@@ -25,179 +117,177 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="154dp"
         android:layout_marginBottom="62dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Back"
         app:cornerRadius="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_v_makeS_next"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_makeS_grip_selection"
         android:layout_width="331dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="223dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="40dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Grip"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_fULabel" />
 
     <TextView
         android:id="@+id/tv_makeS_mag_selection"
         android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Magazine"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_mLabel" />
 
     <TextView
         android:id="@+id/tv_makeS_barrel_selection"
         android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Barrel"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_lLabel" />
 
     <TextView
         android:id="@+id/tv_makeS_optic_selection"
         android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Optic"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_sLabel" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_v_lLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Barrel:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_barrel_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_muzzle_selection" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/tv_v_tLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Muzzle:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_muzzle_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_optic_selection" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/tv_v_mLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Magazine:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_mag_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_barrel_selection" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tv_v_sLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Optic:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_optic_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_secondary_selection" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/tv_v_fULabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Grip:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_grip_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makeS_mag_selection" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_v_pLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Secondary:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_secondary_selection"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <TextView
         android:id="@+id/tv_makeS_secondary_selection"
         android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="1dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Secondary:"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_pLabel" />
 
     <TextView
         android:id="@+id/tv_makeS_muzzle_selection"
         android:layout_width="331dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="1dp"
         android:background="@android:drawable/editbox_background"
         android:fontFamily="@font/allerta_stencil"
         android:hint="Select Muzzle"
         app:drawableEndCompat="@android:drawable/arrow_down_float"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_tLabel" />
 
     <TextView
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="422dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="93dp"
         android:fontFamily="@font/allerta_stencil"
         android:text="Make your Secondary:"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_makeS_grip_selection"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

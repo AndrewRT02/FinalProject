@@ -15,6 +15,15 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".updateSecondary"
+            android:exported="false" />
+        <activity
+            android:name=".updatePrimary"
+            android:exported="false" />
+        <activity
+            android:name=".updateLoadout"
+            android:exported="false" />
+        <activity
             android:name=".rateLoadout"
             android:exported="false" />
         <activity

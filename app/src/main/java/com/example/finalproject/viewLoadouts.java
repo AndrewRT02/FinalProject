@@ -98,8 +98,7 @@ public class viewLoadouts extends AppCompatActivity {
                 dbHelper.getAllLoadoutInfoGivenLoadoutId(lId);
                 dbHelper.getAllPrimaryInfoGivenId(lId);
                 dbHelper.getAllSecondaryInfoGivenID(lId);
-                dbHelper.getAllTacticalInfoGivenID(lId);
-                dbHelper.getAllLethalInfoGivenID(lId);
+
                 dbHelper.getAllPerksInfoGivenID(lId);
 
                 startActivity(intent_j_loadoutInfo);

@@ -40,6 +40,8 @@ public class viewYourLoadout extends AppCompatActivity {
     Intent intent_j_backToUserLoadouts;
     Intent intent_j_secondaryUpdate;
 
+    DatabaseHelper db = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,7 @@ public class viewYourLoadout extends AppCompatActivity {
         tv_j_perk2 = findViewById(R.id.tv_v_your_perk2);
         tv_j_perk3 = findViewById(R.id.tv_v_your_perk3);
 
-        btn_j_rate = findViewById(R.id.btn_v_your_addRating);
-        btn_j_rate.setBackgroundColor(Color.rgb(250, 103, 0));
+
         btn_j_update = findViewById(R.id.btn_v_your_update);
         btn_j_update.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_primary = findViewById(R.id.btn_v_your_primary);
@@ -70,11 +71,11 @@ public class viewYourLoadout extends AppCompatActivity {
         btn_j_secondary = findViewById(R.id.btn_v_your_secondary);
         btn_j_secondary.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        //intent_j_rate = new Intent(viewYourLoadout.this, )
-        //intent_j_updateLoadout = new Intent(viewYourLoadout.this, )
-        //intent_j_updatePrimary = new Intent(viewYourLoadout.this, )
+
+        intent_j_updateLoadout = new Intent(viewYourLoadout.this, updateLoadout.class);
+        intent_j_updatePrimary = new Intent(viewYourLoadout.this, updatePrimary.class);
         intent_j_backToUserLoadouts = new Intent(viewYourLoadout.this, viewUsersLoadouts.class);
-        //intent_j_secondaryUpdate = new Intent(viewYourLoadout.this, )
+        intent_j_secondaryUpdate = new Intent(viewYourLoadout.this, updateSecondary.class);
 
         tv_j_lName.setText(LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
 
@@ -84,8 +85,14 @@ public class viewYourLoadout extends AppCompatActivity {
         tv_j_creator.setText(LoadoutSessionData.getRegisteredLoadout().getUsername());
         tv_j_primary.setText(PrimarySessionData.getRegisteredPrimary().getPrimaryName());
         tv_j_secondary.setText(SecondarySessionData.getRegisteredSecondary().getSecondaryName());
-        tv_j_tactical.setText(TacticalSessionData.getRegisteredTactical().getTacticalName());
-        tv_j_lethal.setText(LethalSessionData.getRegisteredLethal().getLethalName());
+
+        int tactId = db.getTacticalInforGivenCreatorAndLoadoutName(tv_j_creator.getText().toString(), tv_j_lName.getText().toString());
+        String tactName = db.getTacticalNameFromTacticalId(tactId);
+        tv_j_tactical.setText(tactName);
+
+        int lethId = db.getLethalInforGivenCreatorAndLoadoutName(tv_j_creator.getText().toString(), tv_j_lName.getText().toString());
+        String lethName = db.getLethalNameFromLethalId(lethId);
+        tv_j_lethal.setText(lethName);
         tv_j_melee.setText(LoadoutSessionData.getRegisteredLoadout().getMelee());
         tv_j_fU.setText(LoadoutSessionData.getRegisteredLoadout().getFieldUpgrade());
         tv_j_perk1.setText(PerksSessionData.getRegisteredPerks().getPerk1());
@@ -93,6 +100,9 @@ public class viewYourLoadout extends AppCompatActivity {
         tv_j_perk3.setText(PerksSessionData.getRegisteredPerks().getPerk3());
 
         backToUserLoadoutsBtnListener();
+        updateLoadoutBtnListener();
+        updatePrimaryBtnListener();
+        updateSecondaryBtnListener();
     }
 
     private void backToUserLoadoutsBtnListener(){
@@ -100,6 +110,33 @@ public class viewYourLoadout extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent_j_backToUserLoadouts);
+            }
+        });
+    }
+
+    private void updateLoadoutBtnListener(){
+        btn_j_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_updateLoadout);
+            }
+        });
+    }
+
+    private void updatePrimaryBtnListener(){
+        btn_j_primary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_updatePrimary);
+            }
+        });
+    }
+
+    private void updateSecondaryBtnListener(){
+        btn_j_secondary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_secondaryUpdate);
             }
         });
     }

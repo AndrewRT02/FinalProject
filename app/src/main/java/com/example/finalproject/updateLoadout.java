@@ -24,15 +24,25 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class makeLoadout extends AppCompatActivity {
+public class updateLoadout extends AppCompatActivity {
 
     EditText et_j_lName;
 
-    TextView tv_j_lNameError;
-    TextView tv_j_tError;
-    TextView tv_j_lError;
-    TextView tv_j_mError;
-    TextView tv_j_fUError;
+    TextView tv_lNameError;
+    TextView tv_tactError;
+    TextView tv_lethError;
+    TextView tv_melError;
+    TextView tv_fUError;
+
+    Button btn_back;
+    Button btn_update;
+    Button btn_delete;
+
+    DatabaseHelper db = new DatabaseHelper(this);
+
+    Intent intent_j_back;
+    Intent intent_j_update;
+
 
     TextView tacticalSel;
     TextView lethalSel;
@@ -64,42 +74,49 @@ public class makeLoadout extends AppCompatActivity {
     ArrayAdapter<String> melee_popup_adapter;
     ArrayAdapter<String> fieldupgrade_popup_adapter;
 
-
-    Intent intent_j_back;
-    Intent intent_j_home;
-
-    Button btn_j_back;
-    Button btn_j_home;
-    Button btn_j_create;
-
-    DatabaseHelper db = new DatabaseHelper(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_make_loadout);
+        setContentView(R.layout.activity_update_loadout);
 
-        et_j_lName = findViewById(R.id.et_v_makeL_lName);
+        et_j_lName = findViewById(R.id.et_v_updateL_lName);
 
-        btn_j_back = findViewById(R.id.btn_v_makeL_back);
-        btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_home = findViewById(R.id.btn_v_makeL_home);
-        btn_j_home.setBackgroundColor(Color.rgb(250, 103, 0));
-        btn_j_create = findViewById(R.id.btn_v_makeL_create);
-        btn_j_create.setBackgroundColor(Color.rgb(250, 103, 0));
+        tv_lNameError = findViewById(R.id.tv_v_updateL_lNameError);
+        tv_tactError = findViewById(R.id.tv_v_updateL_tError);
+        tv_lethError = findViewById(R.id.tv_v_updateL_lError);
+        tv_melError = findViewById(R.id.tv_v_updateL_mError);
+        tv_fUError = findViewById(R.id.tv_v_updateL_fUError);
 
-        intent_j_back = new Intent(makeLoadout.this, makePerks.class);
-        intent_j_home = new Intent(makeLoadout.this, welcomeScreen.class);
+        btn_back = findViewById(R.id.btn_v_updateL_back);
+        btn_back.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_update = findViewById(R.id.btn_v_updateL_update);
+        btn_update.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_delete = findViewById(R.id.btn_v_updateL_delete);
+        btn_delete.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        tv_j_lNameError = findViewById(R.id.tv_v_makeL_lNameError);
-        tv_j_tError = findViewById(R.id.tv_v_makeL_tError);
-        tv_j_lError = findViewById(R.id.tv_v_makeL_lError);
-        tv_j_mError = findViewById(R.id.tv_v_makeL_mError);
-        tv_j_fUError = findViewById(R.id.tv_v_makeL_fUError);
+        intent_j_back = new Intent(updateLoadout.this, viewYourLoadout.class);
+        intent_j_update = new Intent(updateLoadout.this, welcomeScreen.class);
+
+        et_j_lName.setText(LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
+
+        String tv_j_creator = (LoadoutSessionData.getRegisteredLoadout().getUsername());
+
+        //Log.d("Bananas", tacticalSel.getText().toString());
+
+        //int tactId = db.getIdFromTacticalName(tacticalSel.getText().toString());
+        //String tactName = db.getTacticalNameFromTacticalId(tactId);
+        //tacticalSel.setText(tactName);
+//
+        //int lethId = db.getIdFromLethalName(lethalSel.getText().toString());
+        //String lethName = db.getLethalNameFromLethalId(lethId);
+        //lethalSel.setText(lethName);
+
+        //meleeSel.setText(LoadoutSessionData.getRegisteredLoadout().getMelee());
+        //fieldUpgradeSel.setText(LoadoutSessionData.getRegisteredLoadout().getFieldUpgrade());
 
 
-        tacticalSel = findViewById(R.id.tv_makeL_tactical_selection);
+        tacticalSel = findViewById(R.id.tv_updateL_tactical_selection);
         //-----------------------------Tacticals--------------------------------
         tacticals = new ArrayList<>();
 
@@ -114,7 +131,7 @@ public class makeLoadout extends AppCompatActivity {
         tacticals.add("Shock Charge");
 
 
-        lethalSel = findViewById(R.id.tv_makeL_lethal_selection);
+        lethalSel = findViewById(R.id.tv_updateL_lethal_selection);
         //-----------------------------Lethals--------------------------------
         lethals = new ArrayList<>();
 
@@ -130,7 +147,7 @@ public class makeLoadout extends AppCompatActivity {
         lethals.add("Combat Axe");
 
 
-        meleeSel = findViewById(R.id.tv_makeL_melee_selection);
+        meleeSel = findViewById(R.id.tv_updateL_melee_selection);
         //-----------------------------Melees--------------------------------
         melee = new ArrayList<>();
 
@@ -140,7 +157,7 @@ public class makeLoadout extends AppCompatActivity {
         melee.add("Power Drill");
 
 
-        fieldUpgradeSel = findViewById(R.id.tv_makeL_fU_selection);
+        fieldUpgradeSel = findViewById(R.id.tv_updateL_fU_selection);
         //-----------------------------Field Upgrades--------------------------------
         fieldUpgrades = new ArrayList<>();
 
@@ -162,17 +179,97 @@ public class makeLoadout extends AppCompatActivity {
         meleeSelClickListenerTextView();
         fieldUpgradeClickListenerTextView();
 
+        updateBtnListener();
         backBtnListener();
-        homeBtnListener();
-        createBtnListener();
+        deleteBtnListener();
     }
+
+    private void backBtnListener(){
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_back);
+            }
+        });
+    }
+
+    private void updateBtnListener(){
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean bool;
+                bool = uLoadoutErroChecking();
+
+                if (bool){
+                    int tactId = db.getIdFromTacticalName(tacticalSel.getText().toString());
+                    int lethId = db.getIdFromLethalName(lethalSel.getText().toString());
+                    db.updateLoadout(LoadoutSessionData.getRegisteredLoadout().getUsername(), LoadoutSessionData.getRegisteredLoadout().getLoadoutId(), et_j_lName.getText().toString(), tactId, lethId, meleeSel.getText().toString(), fieldUpgradeSel.getText().toString());
+
+                    startActivity(intent_j_update);
+                }
+            }
+        });
+    }
+
+    private void deleteBtnListener(){
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.deletePrimary(LoadoutSessionData.getRegisteredLoadout().getPrimary());
+                db.deleteSecondary(LoadoutSessionData.getRegisteredLoadout().getSecondary());
+                db.deletePerks(LoadoutSessionData.getRegisteredLoadout().getPerks());
+                db.deleteLoadout(LoadoutSessionData.getRegisteredLoadout().getLoadoutId());
+
+                startActivity(intent_j_update);
+            }
+        });
+    }
+
+    private boolean uLoadoutErroChecking(){
+        Boolean bool = true;
+
+        //Tactical Error Checking
+        if (tacticalSel.getText().toString().isEmpty()){
+            tv_tactError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (tacticalSel != null) {
+            tv_tactError.setVisibility(View.INVISIBLE);
+        }
+
+        //Lethal Error Checking
+        if (lethalSel.getText().toString().isEmpty()){
+            tv_lethError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (lethalSel != null) {
+            tv_lethError.setVisibility(View.INVISIBLE);
+        }
+
+        //Melee Error Checking
+        if (meleeSel.getText().toString().isEmpty()){
+            tv_melError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (meleeSel != null) {
+            tv_melError.setVisibility(View.INVISIBLE);
+        }
+
+        //Field Upgrade Error CHecking
+        if (fieldUpgradeSel.getText().toString().isEmpty()){
+            tv_fUError.setVisibility(View.VISIBLE);
+            bool = false;
+        } else if (fieldUpgradeSel != null) {
+            tv_fUError.setVisibility(View.INVISIBLE);
+        }
+
+        return bool;
+    }
+
 
     //=============================Tacticals============================================
     private void tacticalSelClickListenerTextView(){
         tacticalSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tacticalPopUp = new Dialog(makeLoadout.this);
+                tacticalPopUp = new Dialog(updateLoadout.this);
                 tacticalPopUp.setContentView(R.layout.tactical_spinner_data);
 
                 tacticalPopUp.getWindow().setLayout(800, 1200);
@@ -182,7 +279,7 @@ public class makeLoadout extends AppCompatActivity {
                 tactical_popup_search       = tacticalPopUp.findViewById(R.id.et_tacticalSearch);
                 dialog_tactical_listview    = tacticalPopUp.findViewById(R.id.lv_tacticals);
 
-                tactical_popup_adapter = new ArrayAdapter<>(makeLoadout.this, android.R.layout.simple_list_item_1, tacticals);
+                tactical_popup_adapter = new ArrayAdapter<>(updateLoadout.this, android.R.layout.simple_list_item_1, tacticals);
                 dialog_tactical_listview.setAdapter(tactical_popup_adapter);
 
                 tacticalPopUpEditTextChangeListener();
@@ -220,7 +317,7 @@ public class makeLoadout extends AppCompatActivity {
         lethalSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lethalPopUp = new Dialog(makeLoadout.this);
+                lethalPopUp = new Dialog(updateLoadout.this);
                 lethalPopUp.setContentView(R.layout.lethal_spinner_data);
 
                 lethalPopUp.getWindow().setLayout(800, 1200);
@@ -230,7 +327,7 @@ public class makeLoadout extends AppCompatActivity {
                 lethal_popup_search     = lethalPopUp.findViewById(R.id.et_lethalSearch);
                 dialog_lethal_listview  = lethalPopUp.findViewById(R.id.lv_lethals);
 
-                lethal_popup_adapter    = new ArrayAdapter<>(makeLoadout.this, android.R.layout.simple_list_item_1, lethals);
+                lethal_popup_adapter    = new ArrayAdapter<>(updateLoadout.this, android.R.layout.simple_list_item_1, lethals);
                 dialog_lethal_listview.setAdapter(lethal_popup_adapter);
 
                 lethalPopUpEditTextChangeListener();
@@ -268,7 +365,7 @@ public class makeLoadout extends AppCompatActivity {
         meleeSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meleePopUp = new Dialog(makeLoadout.this);
+                meleePopUp = new Dialog(updateLoadout.this);
                 meleePopUp.setContentView(R.layout.melee_spinner_data);
 
                 meleePopUp.getWindow().setLayout(800, 1200);
@@ -278,7 +375,7 @@ public class makeLoadout extends AppCompatActivity {
                 melee_popup_search      = meleePopUp.findViewById(R.id.et_meleeSearch);
                 dialog_melee_listview   = meleePopUp.findViewById(R.id.lv_melees);
 
-                melee_popup_adapter     = new ArrayAdapter<>(makeLoadout.this, android.R.layout.simple_list_item_1, melee);
+                melee_popup_adapter     = new ArrayAdapter<>(updateLoadout.this, android.R.layout.simple_list_item_1, melee);
                 dialog_melee_listview.setAdapter(melee_popup_adapter);
 
                 meleePopUpEditTextChangeListner();
@@ -316,7 +413,7 @@ public class makeLoadout extends AppCompatActivity {
         fieldUpgradeSel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fieldUpgradePopUp = new Dialog(makeLoadout.this);
+                fieldUpgradePopUp = new Dialog(updateLoadout.this);
                 fieldUpgradePopUp.setContentView(R.layout.fieldupgrade_spinner_data);
 
                 fieldUpgradePopUp.getWindow().setLayout(800, 1200);
@@ -326,7 +423,7 @@ public class makeLoadout extends AppCompatActivity {
                 fieldupgrade_popup_search    = fieldUpgradePopUp.findViewById(R.id.et_fieldUpgradeSearch);
                 dialog_fieldupgrade_listview = fieldUpgradePopUp.findViewById(R.id.lv_fieldUpgrades);
 
-                fieldupgrade_popup_adapter   = new ArrayAdapter<>(makeLoadout.this, android.R.layout.simple_list_item_1, fieldUpgrades);
+                fieldupgrade_popup_adapter   = new ArrayAdapter<>(updateLoadout.this, android.R.layout.simple_list_item_1, fieldUpgrades);
                 dialog_fieldupgrade_listview.setAdapter(fieldupgrade_popup_adapter);
 
                 fieldUpgradePopUpEditTextChangeListener();
@@ -357,113 +454,5 @@ public class makeLoadout extends AppCompatActivity {
                 });
             }
         });
-    }
-
-
-    private void backBtnListener(){
-        btn_j_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent_j_back);
-            }
-        });
-    }
-
-    private void homeBtnListener(){
-        btn_j_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent_j_home);
-            }
-        });
-    }
-
-    private void createBtnListener(){
-        btn_j_create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Boolean bool;
-                bool = loadoutErrorChecking();
-
-                Log.d("Apple", MakePerksSessionData.getPerksParts().getUserP1());
-                int i = db.getLastMadePerkId();
-                Log.d("Apple", String.valueOf(i));
-                Log.d("creator", SessionData.getRegisteredUser().getUname());
-                if (bool){
-                    db.createPrimary(new UserPrimary(MakePrimarySessionData.getPrimaryParts().getUserPrimaryName(), MakePrimarySessionData.getPrimaryParts().getUserPrimaryOptic(), MakePrimarySessionData.getPrimaryParts().getUserPrimaryMuzzle(), MakePrimarySessionData.getPrimaryParts().getUserPrimaryBarrel(), MakePrimarySessionData.getPrimaryParts().getUserPrimaryUnderbarrel(), MakePrimarySessionData.getPrimaryParts().getUserPrimaryStock()));
-                    db.createSecondary(new UserSecondary(MakeSecondarySessionData.getSecondaryParts().getUserSecondaryName(), MakeSecondarySessionData.getSecondaryParts().getUserSecondaryOptic(), MakeSecondarySessionData.getSecondaryParts().getUserSecondaryMuzzle(), MakeSecondarySessionData.getSecondaryParts().getUserSecondaryBarrel(), MakeSecondarySessionData.getSecondaryParts().getUserSecondaryMag(), MakeSecondarySessionData.getSecondaryParts().getUserSecondaryGrip()));
-                    db.createPerks(new UserPerks(MakePerksSessionData.getPerksParts().getUserP1(), MakePerksSessionData.getPerksParts().getUserP2(), MakePerksSessionData.getPerksParts().getUserP3()));
-
-
-                    String creator = SessionData.getRegisteredUser().getUname();
-                    //Get Loadout Name from et_j_lName.getText().toString()
-
-                    //The id's for the primary/secondary that were just made
-                    int pId = db.getLastMadePrimaryId();
-                    int sId = db.getLastMadeSecondaryId();
-
-                    int tactical = db.getIdFromTacticalName(tacticalSel.getText().toString());
-                    int lethal = db.getIdFromLethalName(lethalSel.getText().toString());
-
-                    //The id's for the perk kit that was just made
-                    int perksId = db.getLastMadePerkId();
-
-                    //get melee from meleeSel.getText().toString()
-                    //get field upgrade from fieldUpgradeSel.getText().toString()
-
-                    db.createLoadout(new UserLoadout(SessionData.getRegisteredUser().getUname(), et_j_lName.getText().toString(), pId, sId, tactical, lethal, perksId, meleeSel.getText().toString(), fieldUpgradeSel.getText().toString()));
-
-                    startActivity(intent_j_home);
-                }
-
-            }
-        });
-    }
-
-    private boolean loadoutErrorChecking(){
-        Boolean bool = true;
-
-        //lName Error Checking
-        if (et_j_lName.getText().toString().isEmpty()){
-            tv_j_lNameError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (et_j_lName != null) {
-            tv_j_lNameError.setVisibility(View.INVISIBLE);
-        }
-
-        //Tactical Error Checking
-        if (tacticalSel.getText().toString().isEmpty()){
-            tv_j_tError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (tacticalSel != null) {
-            tv_j_tError.setVisibility(View.INVISIBLE);
-        }
-
-        //Lethal Error Checking
-        if (lethalSel.getText().toString().isEmpty()){
-            tv_j_lError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (lethalSel != null) {
-            tv_j_lError.setVisibility(View.INVISIBLE);
-        }
-
-        //Melee Error Checking
-        if (meleeSel.getText().toString().isEmpty()){
-            tv_j_mError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (meleeSel != null) {
-            tv_j_mError.setVisibility(View.INVISIBLE);
-        }
-
-        //Field Upgrade Error CHecking
-        if (fieldUpgradeSel.getText().toString().isEmpty()){
-            tv_j_fUError.setVisibility(View.VISIBLE);
-            bool = false;
-        } else if (fieldUpgradeSel != null) {
-            tv_j_fUError.setVisibility(View.INVISIBLE);
-        }
-
-        return bool;
     }
 }
