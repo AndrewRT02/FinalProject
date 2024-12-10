@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Search Loadouts"
+        android:text="Search By Rating"
         android:textAlignment="center"
         android:textSize="30sp"
         app:cornerRadius="0sp"

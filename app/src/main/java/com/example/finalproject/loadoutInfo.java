@@ -67,7 +67,7 @@ public class loadoutInfo extends AppCompatActivity {
         btn_j_secondary = findViewById(R.id.btn_v_info_secondary);
         btn_j_secondary.setBackgroundColor(Color.rgb(250, 103, 0));
 
-        intent_j_backToViewLoadouts = new Intent(loadoutInfo.this, viewLoadouts.class);
+        intent_j_backToViewLoadouts = new Intent(loadoutInfo.this, welcomeScreen.class);
         intent_j_seePrimary = new Intent(loadoutInfo.this, primaryInfo.class);
         intent_j_seeSecondary       = new Intent(loadoutInfo.this, secondaryInfo.class);
         intent_j_rateLoadout = new Intent(loadoutInfo.this, rateLoadout.class);

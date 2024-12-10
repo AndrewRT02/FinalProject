@@ -594,6 +594,132 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Loadout getLoadoutInfoGivenLoadoutId(int i){
+        Loadout registeredLoadout = new Loadout();
+
+        String query;
+        query = "SELECT * FROM " + loadout_table_name + " WHERE loadoutId= '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredLoadout.setUsername(cursor.getString(0));
+            registeredLoadout.setLoadoutName(cursor.getString(1));
+            registeredLoadout.setLoadoutId(cursor.getInt(2));
+            registeredLoadout.setPrimary(cursor.getInt(3));
+            registeredLoadout.setSecondary(cursor.getInt(4));
+            registeredLoadout.setTactical(cursor.getInt(5));
+            registeredLoadout.setLethal(cursor.getInt(6));
+            registeredLoadout.setPerks(cursor.getInt(7));
+            registeredLoadout.setMelee(cursor.getString(8));
+            registeredLoadout.setFieldUpgrade(cursor.getString(9));
+
+            LoadoutSessionData.setRegisteredLoadout(registeredLoadout);
+        }
+        else {
+            LoadoutSessionData.setRegisteredLoadout(null);
+        }
+
+
+        db.close();
+
+        return LoadoutSessionData.getRegisteredLoadout();
+    }
+
+    public Loadout loadoutGivenFieldUpgrade(String fU){
+        Loadout registeredLoadout = new Loadout();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + loadout_table_name + " WHERE fieldUpgrade = '" + fU + "';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredLoadout.setUsername(cursor.getString(0));
+            registeredLoadout.setLoadoutName(cursor.getString(1));
+            registeredLoadout.setLoadoutId(cursor.getInt(2));
+            registeredLoadout.setPrimary(cursor.getInt(3));
+            registeredLoadout.setSecondary(cursor.getInt(4));
+            registeredLoadout.setTactical(cursor.getInt(5));
+            registeredLoadout.setLethal(cursor.getInt(6));
+            registeredLoadout.setPerks(cursor.getInt(7));
+            registeredLoadout.setMelee(cursor.getString(8));
+            registeredLoadout.setFieldUpgrade(cursor.getString(9));
+
+            LoadoutSessionData.setRegisteredLoadout(registeredLoadout);
+        }
+        else {
+            LoadoutSessionData.setRegisteredLoadout(null);
+        }
+
+
+        db.close();
+
+        return LoadoutSessionData.getRegisteredLoadout();
+    }
+
+    public Loadout allLoadoutListGivenLoadoutId(int i){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + loadout_table_name + " WHERE loadoutId = '" + i +"';";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        Loadout l = new Loadout();
+
+        if (cursor.moveToFirst()){new Loadout(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getInt(5),
+                        cursor.getInt(6),
+                        cursor.getInt(7),
+                        cursor.getString(8),
+                        cursor.getString(9)); ;
+        }
+        cursor.close();
+
+        //Log.d("Pumpkin", usersLoadoutArrayList.get(0).getLoadoutName());
+
+        return l;
+    }
+
+    public void getAllLoadoutRatingInfoGivenLoadoutId(int i){
+        LoadoutRating registeredLoadoutRating = new LoadoutRating();
+
+        String query;
+        query = "SELECT * FROM " + loadoutRating_table_name + " WHERE loadoutId = '" + i + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //ratingId, loadoutRating, loadoutId
+
+        if (cursor != null){
+            cursor.moveToFirst();
+
+            registeredLoadoutRating.setRatingId(cursor.getInt(0));
+            registeredLoadoutRating.setLoadoutRating(cursor.getInt(1));
+            registeredLoadoutRating.setLoadoutId(cursor.getInt(2));
+
+            LoadoutRatingSessionData.setRegisteredLoadoutRating(registeredLoadoutRating);
+        }
+        else {
+            LoadoutRatingSessionData.setRegisteredLoadoutRating(null);
+        }
+        db.close();
+    }
+
     public int getLethalInforGivenCreatorAndLoadoutName(String c, String lN){
         Loadout l = new Loadout();
 
@@ -657,7 +783,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void getAllPrimaryInfoGivenId(int i){
         Primary registeredPrimary = new Primary();
 
-        String query = "SELECT * FROM " + primary_table_name + "WHERE primaryId = '" + i + "';";
+        String query = "SELECT * FROM " + primary_table_name + " WHERE primaryId = '" + i + "';";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -682,6 +808,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+//    public int getPrimaryIdGivenPrimaryGun(int i){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String query = "SELECT * FROM " + primary_table_name + " WHERE primaryId = '" + i + "';";
+//
+//        Cursor cursor = db.rawQuery(query, null);
+//
+//        if (cursor != null){
+//            cursor.moveToFirst();
+//
+//            (cursor.getString(0));
+//            (cursor.getInt(1));
+//            (cursor.getString(2));
+//            (cursor.getString(3));
+//            (cursor.getString(4));
+//            (cursor.getString(5));
+//            (cursor.getString(6));
+//        }
+//
+//  }
 
     public void setUserPrimaryInfo(String p, String o, String m, String b, String uB, String s){
         UserPrimary uPrimary = new UserPrimary();

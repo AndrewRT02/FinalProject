@@ -207,6 +207,7 @@ public class updateSecondary extends AppCompatActivity {
                 if (bool){
                     db.updateSecondary(secondarySel.getText().toString(), opticSel.getText().toString(), muzzleSel.getText().toString(), barrelSel.getText().toString(), magSel.getText().toString(), gripSel.getText().toString(), SecondarySessionData.getRegisteredSecondary().getSecondaryId());
 
+                    startActivity(intent_j_update);
                 }
             }
         });

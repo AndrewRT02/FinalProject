@@ -89,23 +89,30 @@ public class searchLoadouts extends AppCompatActivity {
     ArrayAdapter<String> end_rating_popup_adapter;
 
     Spinner sp_j_searchOptions;
-    String[] options = {"Primary", "Secondary", "Tactical", "Lethal", "Melee", "Field Upgrade", "Rating"};
+    String[] options = {"Rating"};
 
     Button btn_j_back;
     Button btn_j_search;
+    Button btn_j_searchAgain;
 
     Intent intent_j_welcome;
-    Intent intent_j_searchResults;
+    Intent intent_j_again;
+    Intent intent_j_usersLoadoutInfo;
 
     ListView lv_j_searchedLoadouts;
 
-    static ArrayList<Loadout> searchedLoadoutsArray;
+    static ArrayList<Loadout> searchedLoadoutsArray = new ArrayList<>();
+    static ArrayList<Primary> listOfPrimaries;
+    static ArrayList<Secondary> listOfSecondaries;
+    static ArrayList<LoadoutRating> listOfLoadoutrating;
+    static ArrayList<Double> loadoutRatings;
+
 
     DatabaseHelper db = new DatabaseHelper(this);
 
     int searchBy;
 
-
+    UsersLoadoutListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +124,10 @@ public class searchLoadouts extends AppCompatActivity {
         btn_j_back.setBackgroundColor(Color.rgb(250, 103, 0));
         btn_j_search = findViewById(R.id.btn_v_search_search);
         btn_j_search.setBackgroundColor(Color.rgb(250, 103, 0));
+        btn_j_searchAgain = findViewById(R.id.btn_v_search_searchAgain);
+        btn_j_searchAgain.setBackgroundColor(Color.rgb(250, 103, 0));
+
+        btn_j_searchAgain.setVisibility(View.INVISIBLE);
 
         tv_j_pLabel = findViewById(R.id.tv_v_pLabel);
         tv_j_sLabel = findViewById(R.id.tv_v_sLabel);
@@ -129,10 +140,13 @@ public class searchLoadouts extends AppCompatActivity {
         tv_j_error = findViewById(R.id.tv_v_error);
 
         intent_j_welcome    = new Intent(searchLoadouts.this, welcomeScreen.class);
+        intent_j_again      = new Intent(searchLoadouts.this, searchLoadouts.class);
+        intent_j_usersLoadoutInfo = new Intent(searchLoadouts.this, loadoutInfo.class);
 
         lv_j_searchedLoadouts = findViewById(R.id.lv_v_searchedLoadouts);
 
         sp_j_searchOptions = findViewById(R.id.sp_v_searchOptions);
+        sp_j_searchOptions.setVisibility(View.INVISIBLE);
 
         ArrayAdapter<String> SpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, options);
         SpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -295,6 +309,8 @@ public class searchLoadouts extends AppCompatActivity {
         itemSpinnerSelectedListener();
         searchLoadoutsBtnListener();
         backBtnListener();
+        searchAgainBtnListener();
+        itemClickListener();
     }
 
     //=========================Primaries================================================
@@ -970,6 +986,9 @@ public class searchLoadouts extends AppCompatActivity {
                 tv_j_to.setVisibility(View.INVISIBLE);
                 endRatingSel.setVisibility(View.INVISIBLE);
 
+                btn_j_search.setVisibility(View.INVISIBLE);
+                btn_j_searchAgain.setVisibility(View.VISIBLE);
+
 
                 if (searchBy == 1){
                     //Get Primary Name
@@ -988,6 +1007,12 @@ public class searchLoadouts extends AppCompatActivity {
 
                 }
                 if (searchBy == 6){
+                    if (fieldUpgradeSel != null){
+                        for (int i = 0; i < 5; i++){
+                            searchedLoadoutsArray.add(db.loadoutGivenFieldUpgrade(fieldUpgradeSel.getText().toString()));
+                        }
+                        fillListView();
+                    }
 
                 }
                 if (searchBy == 7){
@@ -998,11 +1023,20 @@ public class searchLoadouts extends AppCompatActivity {
                         ArrayList<Integer> loadoutIds = new ArrayList<>();
                         loadoutIds = db.getLoadoutIDsFromStartandEndIngRatings(Integer.parseInt(startRatingSel.getText().toString()), Integer.parseInt(endRatingSel.getText().toString()));
 
+                        Log.d("Hoopla", "Ready");
                         for (int i = 0; i < loadoutIds.size(); i++){
                             db.getAllLoadoutInfoGivenLoadoutId(loadoutIds.get(i));
 
-                            searchedLoadoutsArray.add(LoadoutSessionData.getRegisteredLoadout());
+                            Log.d("Hoopla", "Set");
+                            Log.d("Hoopla", LoadoutSessionData.getRegisteredLoadout().getLoadoutName());
+                            //searchedLoadoutsArray = db.getLoadoutInfoGivenLoadoutId(loadoutIds.get(i));
+                            //searchedLoadoutsArray = db.allLoadoutListGivenLoadoutId(loadoutIds.get(i));
+                            searchedLoadoutsArray.add(db.getLoadoutInfoGivenLoadoutId(loadoutIds.get(i)));
+
+                            //fillListView();
                         }
+                        Log.d("Hoopla", "Go");
+                        fillListView();
                     }
                     else {
                         tv_j_error.setVisibility(View.VISIBLE);
@@ -1014,8 +1048,37 @@ public class searchLoadouts extends AppCompatActivity {
     }
 
     private void fillListView(){
-
+        adapter = new UsersLoadoutListAdapter(this, searchedLoadoutsArray);
+        lv_j_searchedLoadouts.setAdapter(adapter);
     }
 
+    private void searchAgainBtnListener(){
+        btn_j_searchAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent_j_again);
+            }
+        });
+    }
+
+    private void itemClickListener(){
+        lv_j_searchedLoadouts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int lId;
+                lId = searchedLoadoutsArray.get(i).getLoadoutId();
+
+                db.getAllLoadoutInfoGivenLoadoutId(lId);
+                db.getAllPrimaryInfoGivenId(lId);
+                db.getAllSecondaryInfoGivenID(lId);
+
+                db.getAllPerksInfoGivenID(lId);
+
+                Log.d("Pumpkin", PrimarySessionData.getRegisteredPrimary().getPrimaryName());
+
+                startActivity(intent_j_usersLoadoutInfo);
+            }
+        });
+    }
 
 }

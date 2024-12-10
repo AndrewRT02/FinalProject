@@ -23,7 +23,6 @@ public class viewLoadouts extends AppCompatActivity {
     static ArrayList<Loadout> listOfLoadouts;
     static ArrayList<Primary> listOfPrimaries;
     static ArrayList<Secondary> listOfSecondaries;
-    static ArrayList<LoadoutRating> listOfLoadoutRatings;
     static ArrayList<Double> loadoutRatings;
 
     Button btn_j_back;
